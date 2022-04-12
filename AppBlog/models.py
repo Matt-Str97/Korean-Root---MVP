@@ -8,6 +8,10 @@ class Post(models.Model):
     cuerpo = models.TextField()
     fecha_creacion = models.DateTimeField()
     autor = models.CharField(max_length=50)
-    img_portada = models.ImageField(upload_to='portadas', height_field=None, width_field=None, default='portadadefault.jpg')
-    img_miniatura = models.ImageField(upload_to='miniaturas', height_field=None, width_field=None, default='miniaturadefault.jpg')
+    img_portada = models.ImageField(upload_to='portadas_blog', default='portadadefault.jpg')
+    img_miniatura = models.ImageField(upload_to='miniaturas_blog', default='miniaturadefault.jpg')
+
+    def __str__(self):
+
+        return f'{self.titulo}'
 
