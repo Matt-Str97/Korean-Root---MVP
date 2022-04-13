@@ -6,18 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<body>
-    
-
-    
+<body>       
     <ul>
 
     {% for publicacion in publicaciones %}
-        <div></div>
-        <h1>{{publicacion.titulo}}</h1>
+        
+        <a href="{% url 'publicacion_detalle' id=publicacion.id %}"><h1>{{publicacion.titulo}}</h1></a>        
         <p>{{publicacion.subtitulo}}</p>
         <img src="{{publicacion.img_miniatura.url}}" height="100">
         <hr>    
+
     {% endfor %}   
         
     </ul>
