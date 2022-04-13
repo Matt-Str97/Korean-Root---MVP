@@ -14,7 +14,6 @@ class Post(models.Model):
     link_noticia = models.CharField(max_length=255, null= True, blank= True)
 
     def __str__(self):
-
         return f'{self.titulo}'
 
 class ImagenCarrusel(models.Model):
@@ -22,6 +21,11 @@ class ImagenCarrusel(models.Model):
     texto = models.CharField(max_length=200)
     imagen = models.ImageField(upload_to='carrusel')
 
+    def __str__(self):
+        return f'{self.titulo}'
+
 class ProductoEstrella(models.Model):
     titulo = models.CharField(max_length=50)
     imagen = models.ImageField(upload_to='productos_estrella')
+    def __str__(self):
+        return f'{self.titulo}'
