@@ -16,8 +16,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 
+from KoreanRoot.views import inicio
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', inicio, name='Inicio'),
     path('tienda/', include('AppTienda.urls')),
     path('blog/', include('AppBlog.urls')),
 
