@@ -1,0 +1,10 @@
+{% extends 'AppTienda/padre.html' %}
+{% load static %}
+
+{% block contenidoQueCambia %}
+
+    <h1>Cerraste sesion.</h1>
+
+    <a href="{% url 'login' %}">volver a iniciar sesion.</a>
+
+{% endblock %}
