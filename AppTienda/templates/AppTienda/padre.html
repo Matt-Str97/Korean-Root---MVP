@@ -67,9 +67,17 @@
             <p class="lead fw-normal text-white-50 mb-0">With this shop hompeage template</p>
         </div>
     </div>
-</header>
+</header>        
+        
+        {% if messages %}     
+            
+            {% for mensaje in messages %}
+                <div class="alert alert-{{ mensaje.tags }}">{{mensaje}}</div>
+            {% endfor %}                
 
-
+        {% endif %}
+            
+            
         {% block contenidoQueCambia %}
 
         {% endblock %}
