@@ -4,7 +4,7 @@ from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
 from .forms import UserRegisterForm
-from .models import Capacitacion, Carrito
+from .models import Capacitacion, Carrito, Operaciones
 
 def formaciones(request):
 
@@ -78,13 +78,17 @@ def agregarProducto(request, id):
       producto = Capacitacion.objects.get(id=id)
       carritoUser = usuario.carrito
       productos = Capacitacion.objects.filter(carrito__usuario_id=usuario.id)
-
+      productosUser = Capacitacion.objects.filter(operaciones__usuario_id=usuario.id)
       if producto not in productos:
-            carritoUser.producto.add(producto)
+            if producto not in productosUser:
+                  carritoUser.producto.add(producto)
 
-            messages.success(request, f'el producto {producto.nombre} fue agregado a su carrito!')
-      
-            return redirect('capacitaciones')
+                  messages.success(request, f'el producto {producto.nombre} fue agregado a su carrito!')
+            
+                  return redirect('capacitaciones')
+            else:
+                  messages.error(request, f'Usted ya posee el producto {producto.nombre}')
+                  return redirect('capacitaciones')
       else:
             messages.error(request, f'el producto {producto.nombre} ya esta en su carrito')
             
@@ -115,4 +119,22 @@ def eliminarProducto(request, id):
       carritoUser.producto.remove(producto)
 
       return redirect('carrito')
+
+
+@login_required
+def comprar(request):
+
+      usuario = request.user
+      carritoUser = usuario.carrito
+      productos = Capacitacion.objects.filter(carrito__usuario_id=usuario.id)
+      
+      for item in productos:
+
+            nuevaOperacion = Operaciones(usuario = usuario)
+            nuevaOperacion.save()
+            nuevaOperacion.producto.add(item)
+            carritoUser.producto.remove(item)
+
+      messages.success(request, f'Felicidades {usuario.username} por tu compra!')
+      return redirect('Inicio')
 

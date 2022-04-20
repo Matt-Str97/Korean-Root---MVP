@@ -3,7 +3,7 @@
 
 {% block contenidoQueCambia %}
 
-    <h1>Carrito</h1>
+    <h1>Carrito</h1> 
     <hr>
     {% for producto in productos %}
         <h4>{{producto.nombre}}</h4>
@@ -12,5 +12,10 @@
         <button class="btn btn-outline-secondary"><a href="{% url 'eliminar_producto' id=producto.id %}">eliminar</a></button>
         <hr>
     {% endfor %}
+    
+    {% if productos%}
+        <button class="btn btn-outline-secondary"><a href="{% url 'comprar' %}">Comprar</a></button>
+    {% endif %}       
+    
         
 {% endblock %}
