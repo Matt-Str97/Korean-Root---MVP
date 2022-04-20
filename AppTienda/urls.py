@@ -5,6 +5,8 @@ urlpatterns = [
     path('capacitaciones/', views.capacitaciones, name="capacitaciones"),
     path('capacitacionDetalle/<id>', views.capacitacionDetalle, name="capacitacion_detalle"),
     path('agregarProducto/<id>', views.agregarProducto, name="agregar_producto"),
+    path('eliminarProducto/<id>', views.eliminarProducto, name="eliminar_producto"),
+    path('carrito/', views.verCarrito, name="carrito"),
     path('registrarse/', views.crearUsuario, name="registro_usuario"),
     path('login/', views.loginRequest, name="login"),
     path('logout/', LogoutView.as_view(template_name = 'AppTienda/logout.html'), name = 'logout'),

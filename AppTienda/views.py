@@ -89,3 +89,30 @@ def agregarProducto(request, id):
             messages.error(request, f'el producto {producto.nombre} ya esta en su carrito')
             
             return redirect('capacitaciones')
+
+@login_required
+def verCarrito(request):
+
+      usuario = request.user
+      productos = Capacitacion.objects.filter(carrito__usuario_id=usuario.id)
+      cantidad = productos.count()
+
+      if cantidad > 0:
+            return render(request, 'AppTienda/carrito.html', {'productos': productos})
+      else:
+
+            messages.error(request, 'Tu carrito esta vacio')
+            return render(request, 'AppTienda/carrito.html')
+
+
+@login_required
+def eliminarProducto(request, id):
+
+      usuario = request.user
+      producto = Capacitacion.objects.get(id=id)
+      carritoUser = usuario.carrito
+
+      carritoUser.producto.remove(producto)
+
+      return redirect('carrito')
+

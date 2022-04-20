@@ -1,0 +1,16 @@
+{% extends 'AppTienda/padre.html' %}
+{% load static %}
+
+{% block contenidoQueCambia %}
+
+    <h1>Carrito</h1>
+    <hr>
+    {% for producto in productos %}
+        <h4>{{producto.nombre}}</h4>
+        <p>{{producto.precio}}</p>
+        <img src="{{producto.imagen_miniatura.url}}" height="100"/>
+        <button class="btn btn-outline-secondary"><a href="{% url 'eliminar_producto' id=producto.id %}">eliminar</a></button>
+        <hr>
+    {% endfor %}
+        
+{% endblock %}
