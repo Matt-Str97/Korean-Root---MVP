@@ -1,11 +1,10 @@
-from email.policy import default
 from django.db import models
-
+from ckeditor.fields import RichTextField
 
 class Post(models.Model):
     titulo = models.CharField(max_length=70)
     subtitulo = models.CharField(max_length=140)
-    cuerpo = models.TextField()
+    cuerpo = RichTextField(blank = True, null = True)
     fecha_creacion = models.DateTimeField()
     autor = models.CharField(max_length=50)
     img_portada = models.ImageField(upload_to='portadas_blog', default='portadadefault.jpg')
