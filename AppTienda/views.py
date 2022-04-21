@@ -6,10 +6,6 @@ from django.contrib.auth.decorators import login_required
 from .forms import UserRegisterForm
 from .models import Capacitacion, Carrito, Operaciones
 
-def formaciones(request):
-
-      return render(request, "AppTienda/formacion.html")
-
 def crearUsuario(request):
 
       if request.method == 'POST':
