@@ -82,7 +82,8 @@ def agregarProducto(request, id):
       if producto not in productos:
             if producto not in productosUser:
                   carritoUser.producto.add(producto)
-
+                  carritoUser.total += producto.precio
+                  carritoUser.save()
                   messages.success(request, f'el producto {producto.nombre} fue agregado a su carrito!')
             
                   return redirect('capacitaciones')
@@ -102,7 +103,7 @@ def verCarrito(request):
       cantidad = productos.count()
 
       if cantidad > 0:
-            return render(request, 'AppTienda/carrito.html', {'productos': productos})
+            return render(request, 'AppTienda/carrito.html', {'productos': productos, 'total': usuario.carrito.total})
       else:
 
             messages.error(request, 'Tu carrito esta vacio')
@@ -115,7 +116,8 @@ def eliminarProducto(request, id):
       usuario = request.user
       producto = Capacitacion.objects.get(id=id)
       carritoUser = usuario.carrito
-
+      carritoUser.total -= producto.precio
+      carritoUser.save()
       carritoUser.producto.remove(producto)
 
       return redirect('carrito')
@@ -133,6 +135,8 @@ def comprar(request):
             nuevaOperacion = Operaciones(usuario = usuario)
             nuevaOperacion.save()
             nuevaOperacion.producto.add(item)
+            carritoUser.total -= item.precio
+            carritoUser.save()
             carritoUser.producto.remove(item)
 
       messages.success(request, f'Felicidades {usuario.username} por tu compra!')
