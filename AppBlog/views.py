@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import ImagenCarrusel, Post
+from django.contrib.admin.views.decorators import staff_member_required
 # Create your views here.
 
 

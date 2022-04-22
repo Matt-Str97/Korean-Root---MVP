@@ -1,0 +1,17 @@
+{% extends 'AppTienda/padre.html' %}
+{% load static %}
+
+{% block contenidoQueCambia %}
+
+    {% for producto in productos %}
+            
+        <h3>{{producto.nombre}}</h3>
+        <p>{{producto.fecha_inicio}}</p>
+        <img src="{{imagen_miniatura.url}}" >
+        <button><a href="{% url 'capacitacion_detalle' id=producto.id %}">Ver detalle</a></button>
+        <a href="{{  link_capacitacion }}" target="_blank">Ir a la capacitacion</a>
+        <hr>
+
+    {% endfor %} 
+
+{% endblock %}

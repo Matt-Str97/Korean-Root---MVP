@@ -4,7 +4,7 @@ from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
 from .forms import UserRegisterForm
-from .models import Capacitacion, Carrito, Operaciones
+from .models import Capacitacion, Operaciones
 
 def crearUsuario(request):
 
@@ -55,7 +55,7 @@ def loginRequest(request):
 
 
 def capacitaciones(request):
-
+    
       cursos_lista = Capacitacion.objects.all()
 
       return render(request, 'AppTienda/formacion.html', {'cursos_lista': cursos_lista})
@@ -138,3 +138,15 @@ def comprar(request):
       messages.success(request, f'Felicidades {usuario.username} por tu compra!')
       return redirect('Inicio')
 
+@login_required
+def misCursos(request):
+
+      usuario = request.user
+      productos = Operaciones.objects.filter(usuario_id = usuario.id)
+
+      if productos: 
+            
+            return render(request, 'AppTienda/mis_capacitaciones.html', {'productos': productos})
+      else:
+            messages.error(request, 'Usted no posee ninguna capacitacion')
+            return redirect('Inicio')

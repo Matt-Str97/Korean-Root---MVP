@@ -8,6 +8,7 @@ urlpatterns = [
     path('eliminarProducto/<id>', views.eliminarProducto, name="eliminar_producto"),
     path('carrito/', views.verCarrito, name="carrito"),
     path('comprar/', views.comprar, name="comprar"),
+    path('misCapacitaciones/', views.misCursos, name="mis_capacitaciones"),
     path('registrarse/', views.crearUsuario, name="registro_usuario"),
     path('login/', views.loginRequest, name="login"),
     path('logout/', LogoutView.as_view(template_name = 'AppTienda/logout.html'), name = 'logout'),
