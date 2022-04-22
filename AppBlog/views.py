@@ -9,10 +9,17 @@ def publicaciones(request):
 
     lista_publicaciones = Post.objects.all().order_by('-id')
 
-    return render(request, 'AppBlog/listaPublicaciones.html', {'publicaciones': lista_publicaciones})
+    if lista_publicaciones.count() > 0:
+
+        return render(request, 'AppBlog/listaPublicaciones.html', {'publicaciones': lista_publicaciones})
+
+    else:
+        
+        messages.error(request, 'Aún no hay publicaciones en el blog.')
+        return render(request, 'AppBlog/listaPublicaciones.html')
 
 
-def publicacion_detalle(request, id):
+def publicacionDetalle(request, id):
 
     publicacion = Post.objects.get(id=id)
 
@@ -43,6 +50,48 @@ def crearPublicacion(request):
         form = CrearPublicacionForm()
 
     return render(request,'AppBlog/nueva_publicacion.html', {'form': form})
+
+
+def eliminarPublicacion(request,id):
+    
+    publicacion = Post.objects.get(id=id)
+    publicacion.delete()
+
+    messages.success(request, 'Se elimino la publicacion.')
+    return redirect('lista_publicaciones')
+
+
+def editarPublicacion(request,id):
+
+    post = Post.objects.get(id=id)
+
+    if request.method == 'POST':
+
+        form = CrearPublicacionForm(request.POST)
+
+        if form.is_valid():
+                        
+            info = form.cleaned_data
+            post.titulo = info['titulo']
+            post.subtitulo = info['subtitulo']
+            post.cuerpo = info['cuerpo']
+            post.fecha_creacion = info['fecha_creacion']
+            post.autor = info['autor']
+            post.img_portada = info['img_portada']
+            post.img_miniatura = info['img_miniatura']
+            post.fuente = info['fuente']
+            post.link_noticia = info['link_noticia']
+            post.save()
+
+            messages.success(request, 'La publicacion fue editada con exito!')
+            return redirect('lista_publicaciones')
+    
+    else:
+        form = CrearPublicacionForm(initial= {'titulo': post.titulo, 'subtitulo': post.subtitulo, 'cuerpo': post.cuerpo, 'fecha_creacion': post.fecha_creacion, 'autor': post.autor, 
+            'img_portada': post.img_portada, 'img_miniatura': post.img_miniatura, 'fuente': post.fuente, 'link_noticia': post.link_noticia})
+
+    return render(request, 'AppBlog/editar_publicacion.html', {'form': form})
+
 
 def agregarCarrusel(request):
 

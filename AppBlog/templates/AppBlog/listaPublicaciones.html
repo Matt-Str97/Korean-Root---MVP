@@ -1,28 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>       
+{% extends 'AppTienda/padre.html' %}
+{% load static %}
+
+{% block contenidoQueCambia %}
+     
     <ul>
+    
+    {% if publicaciones %}
+        
+        {% for publicacion in publicaciones %}
+            
+            <a href="{% url 'publicacion_detalle' id=publicacion.id %}"><h1>{{publicacion.titulo}}</h1></a>        
+            <p>{{publicacion.subtitulo}}</p>
+            {% if publicacion.img_miniatura %}
+                <img src="{{publicacion.img_miniatura.url}}" height="100">
+            {% else %}
+                <img src="\media\miniaturadefault.jpg" height="100"/>
+            {% endif %}
 
-    {% for publicacion in publicaciones %}
-        
-        <a href="{% url 'publicacion_detalle' id=publicacion.id %}"><h1>{{publicacion.titulo}}</h1></a>        
-        <p>{{publicacion.subtitulo}}</p>
-        {% if publicacion.img_miniatura %}
-            <img src="{{publicacion.img_miniatura.url}}" height="100">
-        {% else %}
-            <img src="\media\miniaturadefault.jpg" height="100"/>
-        {% endif %}
-        
-        <hr>    
+            
+            {% if user.is_autenthicated and user.is_staff %}            
+                    
+                <button><a href="{% url 'eliminar_publicacion' id=publicacion.id %}">Eliminar</a></button>
+                <button><a href="{% url 'editar_publicacion' id=publicacion.id %}">Editar</a></button>
+                
+            {% endif %}
+            <hr>    
 
-    {% endfor %}   
+        {% endfor %}   
         
+    {% else %}
+        
+        <h3>Aun no hay publicaciones en el blog.</h3>
+
+    {% endif %}
+
+
     </ul>
-</body>
-</html>
+
+{% endblock %}
