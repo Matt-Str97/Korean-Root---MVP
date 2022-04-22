@@ -13,7 +13,12 @@
         
         <a href="{% url 'publicacion_detalle' id=publicacion.id %}"><h1>{{publicacion.titulo}}</h1></a>        
         <p>{{publicacion.subtitulo}}</p>
-        <img src="{{publicacion.img_miniatura.url}}" height="100">
+        {% if publicacion.img_miniatura %}
+            <img src="{{publicacion.img_miniatura.url}}" height="100">
+        {% else %}
+            <img src="\media\miniaturadefault.jpg" height="100"/>
+        {% endif %}
+        
         <hr>    
 
     {% endfor %}   

@@ -1,15 +1,14 @@
-from email.policy import default
 from django.db import models
-
+from ckeditor.fields import RichTextField
 
 class Post(models.Model):
     titulo = models.CharField(max_length=70)
     subtitulo = models.CharField(max_length=140)
-    cuerpo = models.TextField()
-    fecha_creacion = models.DateTimeField()
+    cuerpo = RichTextField(blank = True, null = True)
+    fecha_creacion = models.DateTimeField(auto_now_add=True)
     autor = models.CharField(max_length=50)
-    img_portada = models.ImageField(upload_to='portadas_blog', default='portadadefault.jpg')
-    img_miniatura = models.ImageField(upload_to='miniaturas_blog', default='miniaturadefault.jpg')
+    img_portada = models.ImageField(upload_to='portadas_blog', null=True, blank=True)
+    img_miniatura = models.ImageField(upload_to='miniaturas_blog', null=True, blank=True)
     fuente = models.CharField(max_length=20, null= True, blank= True)
     link_noticia = models.CharField(max_length=255, null= True, blank= True)
 
@@ -27,5 +26,6 @@ class ImagenCarrusel(models.Model):
 class ProductoEstrella(models.Model):
     titulo = models.CharField(max_length=50)
     imagen = models.ImageField(upload_to='productos_estrella')
+    
     def __str__(self):
         return f'{self.titulo}'
