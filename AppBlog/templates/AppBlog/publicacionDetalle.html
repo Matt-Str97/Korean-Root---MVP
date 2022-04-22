@@ -8,11 +8,18 @@
 </head>
 <body>
     
-    <img src="{{img_portada.url}}" height="400">
+    
+    {% if img_portada %}
+        <img src="{{img_portada.url}}" height="400">
+    {% else %}
+        <img src="\media\portadadefault.jpg" height="400"/>
+    {% endif %}
+    
+        
     <h1>{{titulo}}</h1>
     <h3>{{subtitulo}}</h3>
     <hr>
-    <p>{{cuerpo}}</p>
+    <p>{{cuerpo|safe}}</p>
     <hr>
     
     {% if fuente %}
@@ -23,7 +30,7 @@
         </p>
     {% endif %}
     
-    <p>Publicacion creada por {{autor}} el dia {{fecha_creacion}}</p>
+    <p>Publicacion creada por {{autor}} el dia {{fecha_creacion|date:'d/n/Y'}}</p>
     <hr>
 
 
