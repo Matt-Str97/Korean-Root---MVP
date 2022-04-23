@@ -11,4 +11,3 @@ def formaciones(request):
 
       return render(request, "AppTienda\\formacion.html")
 
-
