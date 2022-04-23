@@ -142,7 +142,7 @@ def comprar(request):
 def misCursos(request):
 
       usuario = request.user
-      productos = Operaciones.objects.filter(usuario_id = usuario.id)
+      productos = Capacitacion.objects.filter(operaciones__usuario_id = usuario.id)
 
       if productos: 
             
