@@ -1,0 +1,31 @@
+{% extends 'AppTienda/padre.html' %}
+{% load static %}
+
+{% block contenidoQueCambia %}
+     
+    <ul>   
+    
+        
+        {% for producto in productos %}
+
+            <img src="{{producto.imagen.url}}" height="100">               
+            <p>{{producto.titulo}}</p>
+            
+            {% if user.is_staff %}            
+                    
+                <button><a href="{% url 'eliminar_prod_estrella' id=producto.id %}">Eliminar</a></button>
+                <button><a href="{% url 'editar_prod_estrella' id=producto.id %}">Editar</a></button>
+                
+            {% endif %}
+            <hr>    
+
+        {% endfor %}          
+
+        {% if user.is_staff %}
+
+            <button><a href="{% url 'agregar_prod_estrella' %}">Crear producto estrella</a></button>
+            
+        {% endif %}
+    </ul>
+
+{% endblock %}

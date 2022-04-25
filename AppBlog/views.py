@@ -158,7 +158,7 @@ def eliminarCarrusel(request,id):
     return redirect('imagenes_carrusel')
     
 
-
+# Productos estrella
 @staff_member_required
 def agregarProductoEstrella(request):
 
@@ -173,9 +173,47 @@ def agregarProductoEstrella(request):
             mi_producto.save()
 
             messages.success(request, 'Producto estrella creado con exito!')
-            return redirect('lista_publicaciones')
+            return redirect('ver_prod_estrella')
     
     else:
         form = AgregarProductoEstrella()
 
     return render(request, 'AppBlog/nuevo_prod_estrella.html', {'form': form})
+
+def eliminarProdEstrella(request, id):
+    producto = ProductoEstrella.objects.get(id=id)
+    producto.delete()
+
+    messages.success(request, 'Se elimino el producto estrella.')
+    return redirect('ver_prod_estrella')
+
+def verProdEstrella(request):
+
+    productos = ProductoEstrella.objects.all()
+    if productos.count() > 0:
+        return render(request, 'AppBlog/productos_estrella.html', {'productos': productos})
+    else:
+        messages.error(request, 'No hay productos estrella')
+        return render(request, 'AppBlog/productos_estrella.html')
+
+def editarProdEstrella(request, id):
+
+    producto = ProductoEstrella.objects.get(id=id)
+
+    if request.method == 'POST':
+
+        form = AgregarProductoEstrella(request.POST, request.FILES)
+
+        if form.is_valid():
+
+            info = form.cleaned_data
+            producto.titulo = info['titulo']
+            producto.imagen = info['imagen']
+            producto.save()
+
+            messages.success(request, 'Producto editado con exito.')
+            return redirect('ver_prod_estrella')
+    else:
+        form = AgregarProductoEstrella(initial= {'titulo': producto.titulo, 'imagen': producto.imagen})
+    
+    return render(request, 'AppBlog/editar_prod_estrella.html', {'form': form})
