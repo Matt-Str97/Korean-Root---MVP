@@ -1,0 +1,31 @@
+{% extends 'AppTienda/padre.html' %}
+{% load static %}
+
+{% block contenidoQueCambia %}
+     
+    <ul>   
+    
+        
+        {% for imagen in imagenes %}
+
+            <img src="{{imagen.imagen.url}}" height="100">               
+            <p>{{imagen.titulo}}</p>
+            
+            {% if user.is_staff %}            
+                    
+                <button><a href="{% url 'eliminar_carrusel' id=imagen.id %}">Eliminar</a></button>
+                <button><a href="{% url 'editar_carrusel' id=imagen.id %}">Editar</a></button>
+                
+            {% endif %}
+            <hr>    
+
+        {% endfor %}          
+
+        {% if user.is_staff %}
+
+            <button><a href="{% url 'crear_carrusel' %}">Crear Imagen</a></button>
+            
+        {% endif %}
+    </ul>
+
+{% endblock %}

@@ -3,7 +3,6 @@ from .models import ImagenCarrusel, Post, ProductoEstrella
 from .forms import AgregarCarrusel, AgregarProductoEstrella, CrearPublicacionForm
 from django.contrib import messages
 from django.contrib.admin.views.decorators import staff_member_required
-# Create your views here.
 
 
 def publicaciones(request):
@@ -28,7 +27,8 @@ def publicacionDetalle(request, id):
     return render(request, 'AppBlog/publicacionDetalle.html',{'titulo': publicacion.titulo,'subtitulo': publicacion.subtitulo, 'cuerpo': publicacion.cuerpo, 
     'fecha_creacion': publicacion.fecha_creacion, 'autor': publicacion.autor, 'img_portada': publicacion.img_portada, 'fuente': publicacion.fuente, 'link_noticia': publicacion.link_noticia})
 
-
+# Publicaciones del blog
+@staff_member_required
 def crearPublicacion(request):
 
     if request.method == 'POST':
@@ -52,7 +52,7 @@ def crearPublicacion(request):
 
     return render(request,'AppBlog/nueva_publicacion.html', {'form': form})
 
-
+@staff_member_required
 def eliminarPublicacion(request,id):
     
     publicacion = Post.objects.get(id=id)
@@ -61,7 +61,7 @@ def eliminarPublicacion(request,id):
     messages.success(request, 'Se elimino la publicacion.')
     return redirect('lista_publicaciones')
 
-
+@staff_member_required
 def editarPublicacion(request,id):
 
     post = Post.objects.get(id=id)
@@ -93,7 +93,8 @@ def editarPublicacion(request,id):
 
     return render(request, 'AppBlog/editar_publicacion.html', {'form': form})
 
-
+# Carrusel de imagenes
+@staff_member_required
 def agregarCarrusel(request):
 
     if request.method == 'POST':
@@ -107,13 +108,58 @@ def agregarCarrusel(request):
             mi_carrusel.save()
 
             messages.success(request, 'Imagen agregada al carrusel!')
-            return redirect('lista_publicaciones')
+            return redirect('imagenes_carrusel')
     
     else:
         form = AgregarCarrusel()
 
     return render(request, 'AppBlog/nuevo_carrusel.html', {'form': form})
 
+@staff_member_required
+def imagenesCarrusel(request):
+
+    imagenes = ImagenCarrusel.objects.all()
+
+    if imagenes.count() > 0:
+        return render(request, 'AppBlog/imagenes_carrusel.html', {'imagenes': imagenes})
+    else:
+        messages.error(request, 'No hay imagenes en el carrusel')
+        return render(request, 'AppBlog/imagenes_carrusel.html', {'imagenes': imagenes})
+
+@staff_member_required
+def editarCarrusel(request,id):
+
+    carrusel = ImagenCarrusel.objects.get(id=id)
+
+    if request.method == 'POST':
+
+        form = AgregarCarrusel(request.POST, request.FILES)
+
+        if form.is_valid():
+
+           info = form.cleaned_data
+           carrusel.titulo = info['titulo']
+           carrusel.texto = info['texto']
+           carrusel.imagen = info['imagen']
+           carrusel.save()
+
+           messages.success (request, 'Se edito el carrusel con exito.')
+           return redirect('imagenes_carrusel')
+    else:
+        form = AgregarCarrusel(initial= {'imagen': carrusel.imagen, 'titulo': carrusel.titulo, 'texto': carrusel.texto})
+    
+    return render(request, 'AppBlog/editar_carrusel.html', {'form': form})
+
+def eliminarCarrusel(request,id):
+    imagen = ImagenCarrusel.objects.get(id=id)
+    imagen.delete()
+
+    messages.success(request, 'Se elimino la imagen del carrusel')
+    return redirect('imagenes_carrusel')
+    
+
+
+@staff_member_required
 def agregarProductoEstrella(request):
 
     if request.method == 'POST':

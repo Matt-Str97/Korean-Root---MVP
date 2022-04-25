@@ -18,7 +18,7 @@ class Post(models.Model):
 class ImagenCarrusel(models.Model):
     titulo = models.CharField(max_length=70)
     texto = models.CharField(max_length=200)
-    imagen = models.ImageField(upload_to='carrusel')
+    imagen = models.ImageField(upload_to='carrusel', null=True, blank=True, default=None)
 
     def __str__(self):
         return f'{self.titulo}'

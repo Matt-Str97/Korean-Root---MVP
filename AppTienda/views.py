@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 from .forms import UserRegisterForm
 from .models import Capacitacion, Operaciones
 
+# Creacion de usuario y login
 def crearUsuario(request):
 
       if request.method == 'POST':
@@ -53,7 +54,7 @@ def loginRequest(request):
       
       return render(request, 'AppTienda/login.html', {'form': form})
 
-
+# Capacitaciones
 def capacitaciones(request):
     
       cursos_lista = Capacitacion.objects.all()
@@ -67,6 +68,7 @@ def capacitacionDetalle(request,id):
       return render(request, 'AppTienda/formacionDetalle.html', {'curso': curso})
 
 
+# Carrito
 @login_required
 def agregarProducto(request, id):
 
@@ -138,6 +140,7 @@ def comprar(request):
       messages.success(request, f'Felicidades {usuario.username} por tu compra!')
       return redirect('Inicio')
 
+# Perfil del usuario
 @login_required
 def misCursos(request):
 

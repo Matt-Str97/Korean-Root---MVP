@@ -3,9 +3,8 @@
 
 {% block contenidoQueCambia %}
      
-    <ul>
+    <ul>   
     
-    {% if publicaciones %}
         
         {% for publicacion in publicaciones %}
             
@@ -18,7 +17,7 @@
             {% endif %}
 
             
-            {% if user.is_autenthicated and user.is_staff %}            
+            {% if user.is_staff %}            
                     
                 <button><a href="{% url 'eliminar_publicacion' id=publicacion.id %}">Eliminar</a></button>
                 <button><a href="{% url 'editar_publicacion' id=publicacion.id %}">Editar</a></button>
@@ -26,15 +25,12 @@
             {% endif %}
             <hr>    
 
-        {% endfor %}   
-        
-    {% else %}
-        
-        <h3>Aun no hay publicaciones en el blog.</h3>
+        {% endfor %}          
 
-    {% endif %}
+        {% if user.is_staff %}
 
-
+            <button><a href="{% url 'crear_publicacion' %}">Crear publicacion</a></button>
+        {% endif %}
     </ul>
 
 {% endblock %}
