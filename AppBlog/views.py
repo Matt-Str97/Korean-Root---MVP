@@ -132,3 +132,10 @@ def agregarProductoEstrella(request):
         form = AgregarProductoEstrella()
 
     return render(request, 'AppBlog/nuevo_prod_estrella.html', {'form': form})
+
+def ver_carrusel(request):
+    imagenes = ImagenCarrusel.objects.all().order_by("-id")
+    print("--------------------------------------------------------")
+    print(imagenes)
+    print(imagenes.latest("id"))
+    return render(request, "AppTienda/padre3.html", {"imagenes":imagenes})

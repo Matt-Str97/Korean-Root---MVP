@@ -9,4 +9,4 @@ def inicio(request):
 
 def prueba(request):
 
-      return render(request, "AppTienda\\padre3.html")
+      return render(request, "AppTienda\\padre.html")
