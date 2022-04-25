@@ -9,7 +9,7 @@
         <p>{{producto.fecha_inicio}}</p>
         <img src="{{producto.imagen_miniatura.url}}" height="100">
         <button><a href="{% url 'capacitacion_detalle' id=producto.id %}">Ver detalle</a></button>
-        <button><a href='{{producto.link_capacitacion}}'>Link al articulo</a></button>        
+        <button><a href='{{producto.link_capacitacion}}'>Link a la capacitacion</a></button>        
         <hr>
 
     {% endfor %} 

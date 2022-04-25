@@ -21,11 +21,11 @@
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-light bg-light"> <!--Barra horizontal-->>
             <div class="container px-4 px-lg-5">
-                <a class="navbar-brand" href="#!">Korean Root</a>
+                <a class="navbar-brand" href="{% url 'Inicio' %}">Korean Root</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="#!">Inicio</a></li>
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'Inicio' %}">Inicio</a></li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Tienda</a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -36,25 +36,32 @@
                                 <li><a class="dropdown-item" href="#!">Korean Root México</a></li>
                             </ul>
                         </li>
-                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="#!">Blog</a></li>
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'lista_publicaciones' %}">Blog</a></li>
                         <li class="nav-item"><a class="nav-link" href="#!">Acerca de nosotros</a></li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Formaciones</a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" href="#!">Formaciones disponibles</a></li>
                                 <li><hr class="dropdown-divider" /></li>
-                                <li><a class="dropdown-item" href="#!">Inicia sesión</a></li>
+                                
                                 <li><hr class="dropdown-divider" /></li>
                                 <li><a class="dropdown-item" href="#!">Canales Youtube/Instagram</a></li>
                             </ul>
                         </li>
+                        
+                        {% if user.is_authenticated %}                        
+                            <li class="nav-item"><a class="nav-link active" href="{% url 'logout' %}">Cerrar sesión</a></li>
+                        {% else %}                            
+                            <li class="nav-item"><a class="nav-link active" href="{% url 'login' %}">Iniciar sesión</a></li>
+                            <li class="nav-item"><a class="nav-link active" href="{% url 'registro_usuario' %}">Registrarse</a></li>
+                        {% endif %}
                     </ul>
-                    <form class="d-flex">
-                        <button class="btn btn-outline-secondary" type="submit">
+                    <form class="d-flex" >
+                        <a class="btn btn-outline-secondary" href="{% url 'carrito' %}">
                             <i class="bi-cart-fill me-1"></i>
                             Cart
                             <span class="badge bg-secondary text-white ms-1 rounded-pill">0</span>
-                        </button>
+                        </a>
                     </form>
                 </div>
             </div>
@@ -68,9 +75,17 @@
             <p class="lead fw-normal text-white-50 mb-0">With this shop hompeage template</p>
         </div>
     </div>
-</header>
+</header>        
+        
+        {% if messages %}     
+            
+            {% for mensaje in messages %}
+                <div class="alert alert-{{ mensaje.tags }}">{{mensaje}}</div>
+            {% endfor %}                
 
-
+        {% endif %}
+            
+            
         {% block contenidoQueCambia %}
 
         {% endblock %}

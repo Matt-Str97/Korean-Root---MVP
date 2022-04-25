@@ -1,0 +1,15 @@
+{% extends 'AppTienda/padre.html' %}
+{% load static %}
+
+{% block contenidoQueCambia %}
+
+    <form method="POST">
+        {% csrf_token %}
+
+        {{ form.as_p }}
+
+        <button type="submit">Iniciar Sesion</button>
+
+    </form>
+
+{% endblock %}

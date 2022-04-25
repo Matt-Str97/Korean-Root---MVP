@@ -2,6 +2,7 @@ from django.shortcuts import redirect, render
 from .models import ImagenCarrusel, Post, ProductoEstrella
 from .forms import AgregarCarrusel, AgregarProductoEstrella, CrearPublicacionForm
 from django.contrib import messages
+from django.contrib.admin.views.decorators import staff_member_required
 # Create your views here.
 
 
