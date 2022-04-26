@@ -146,7 +146,7 @@ def editarCarrusel(request,id):
            messages.success (request, 'Se edito el carrusel con exito.')
            return redirect('imagenes_carrusel')
     else:
-        form = AgregarCarrusel(initial= {'imagen': carrusel.imagen, 'titulo': carrusel.titulo, 'texto': carrusel.texto})
+        form = AgregarCarrusel(initial= {'imagen': carrusel.imagen.url, 'titulo': carrusel.titulo, 'texto': carrusel.texto})
     
     return render(request, 'AppBlog/editar_carrusel.html', {'form': form})
 
