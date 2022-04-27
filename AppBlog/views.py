@@ -134,19 +134,18 @@ def editarCarrusel(request,id):
     if request.method == 'POST':
 
         form = AgregarCarrusel(request.POST, request.FILES)
-
         if form.is_valid():
 
-           info = form.cleaned_data
-           carrusel.titulo = info['titulo']
-           carrusel.texto = info['texto']
-           carrusel.imagen = info['imagen']
-           carrusel.save()
+            info = form.cleaned_data
+            carrusel.titulo = info['titulo']
+            carrusel.texto = info['texto']
+            carrusel.imagen = info['imagen']
+            carrusel.save()
 
-           messages.success (request, 'Se edito el carrusel con exito.')
-           return redirect('imagenes_carrusel')
+            messages.success (request, 'Se edito el carrusel con exito.')
+            return redirect('imagenes_carrusel')
     else:
-        form = AgregarCarrusel(initial= {'imagen': carrusel.imagen.url, 'titulo': carrusel.titulo, 'texto': carrusel.texto})
+        form = AgregarCarrusel(initial= {'imagen': carrusel.imagen, 'titulo': carrusel.titulo, 'texto': carrusel.texto})
     
     return render(request, 'AppBlog/editar_carrusel.html', {'form': form})
 
