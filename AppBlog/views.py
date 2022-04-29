@@ -5,6 +5,37 @@ from django.contrib import messages
 from django.contrib.admin.views.decorators import staff_member_required
 
 
+def inicio(request):
+    
+    carrusel = ImagenCarrusel.objects.all()
+    carrusel_1 =ImagenCarrusel.objects.all()[0]
+    carrusel_2 =ImagenCarrusel.objects.all()[1]
+    carrusel_3 =ImagenCarrusel.objects.all()[2]
+    carrusel_4 =ImagenCarrusel.objects.all()[3]
+    carrusel_5 =ImagenCarrusel.objects.all()[4]
+    carrusel_6 =ImagenCarrusel.objects.all()[5]
+    carrusel = [carrusel_2, carrusel_3, carrusel_4, carrusel_5, carrusel_6]
+
+    imagenes = ProductoEstrella.objects.all()
+
+    post_1 = Post.objects.all()[0]
+    post_2 = Post.objects.all()[1]
+    publicaciones = [post_1, post_2]
+
+    return render(request, 'AppBlog/inicio.html', {
+    'imagenes': imagenes, 
+    'publicaciones': publicaciones, 
+    'img_carrusel': carrusel, 
+    'carrusel_1': carrusel_1,
+    'carrusel_2': carrusel_2,
+    'carrusel_3': carrusel_3,
+    'carrusel_4': carrusel_4,
+    'carrusel_5': carrusel_5,
+    'carrusel_6': carrusel_6,
+    })
+
+
+
 def publicaciones(request):
 
     lista_publicaciones = Post.objects.all().order_by('-id')
@@ -22,7 +53,6 @@ def publicaciones(request):
 def publicacionDetalle(request, id):
 
     publicacion = Post.objects.get(id=id)
-
     
     return render(request, 'AppBlog/publicacionDetalle.html',{'titulo': publicacion.titulo,'subtitulo': publicacion.subtitulo, 'cuerpo': publicacion.cuerpo, 
     'fecha_creacion': publicacion.fecha_creacion, 'autor': publicacion.autor, 'img_portada': publicacion.img_portada, 'fuente': publicacion.fuente, 'link_noticia': publicacion.link_noticia})

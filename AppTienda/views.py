@@ -179,3 +179,9 @@ def editarUsuario(request):
             form = UserEditForm(initial={'email': usuario.email,'first_name': usuario.first_name,'last_name': usuario.last_name})
             
       return render(request, 'AppTienda/perfil_usuario.html', {'form': form})
+
+# About us
+def acerca(request):
+
+      return render(request, "AppTienda/acerca.html")
+

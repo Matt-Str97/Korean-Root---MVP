@@ -1,44 +1,57 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
-    <h1>{{titulo}}</h1>
-    {% if user.is_autenthicated and user.is_staff %}            
-                    
-        <button><a href="{% url 'eliminar_publicacion' id=publicacion.id %}">Eliminar</a></button>
-        <button><a href="{% url 'editar_publicacion' id=publicacion.id %}">Editar</a></button>
-    
-    {% endif %}
-    <hr>
-    {% if img_portada %}
-        <img src="{{img_portada.url}}" height="400">
-    {% else %}
-        <img src="\media\portadadefault.jpg" height="400"/>
-    {% endif %}
-    
+{% extends 'AppTienda/padre.html' %}
+{% load static %}
+
+{% block contenidoQueCambia %}
+<button type="button" class="btn-close" aria-label="Close" style="margin-left: 2.5%; margin-top: 1.5%;">
+    <a 
+    href="{% url 'blog:lista_publicaciones' %}"
+    style="color: rgb(255, 255, 255); text-decoration: none;"
+    >
+    .
+    </a>
+</button>
+    <div style="margin-right: 5%; margin-left: 5%; margin-bottom: 2%; margin-top: 2%;">
+        <h1 style="font-size: 50px">{{titulo}}</h1>
+        {% if user.is_autenthicated and user.is_staff %}            
+                        
+            <button><a href="{% url 'eliminar_publicacion' id=publicacion.id %}">Eliminar</a></button>
+            <button><a href="{% url 'editar_publicacion' id=publicacion.id %}">Editar</a></button>
         
-    <h3>{{subtitulo}}</h3>
-    <hr>
-    <p>{{cuerpo|safe}}</p>
-    <hr>
-    
-    {% if fuente %}
-        <p>
-            Fuente: {{fuente}}.      
-            <a href='{{link_noticia}}'>Link al articulo</a>
+        {% endif %}
+        <hr>
+        <h3 style="margin-bottom: 1rem;">{{subtitulo}}</h3>
+        {% if img_portada %}
+            <img 
+            src="{{img_portada.url}}" 
+            width="50%" 
+            style=
+            "display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 50%;">
             
-        </p>
-    {% endif %}
-    
-    <p>Publicacion creada por {{autor}} el dia {{fecha_creacion|date:'d/n/Y'}}</p>
-    <hr>
+        {% else %}
+            <img src="\media\portadadefault.jpg" height="400"/>
+        {% endif %}
+        
+            
+        
+        <hr>
+        <p style="font-size: 20px;">{{cuerpo|safe}}</p>
+        <hr style="margin-bottom: 3%;">
+        
+        {% if fuente %}
+            <p>
+                Fuente: {{fuente}}.      
+                <a href='{{link_noticia}}'>Link al articulo</a>
+                
+            </p>
+        {% endif %}
+        
+        <p>Publicacion creada por {{autor}} el dia {{fecha_creacion|date:'d/n/Y'}}</p>
+        <hr>
+    </div>
 
 
-</body>
-</html>
+
+{% endblock %}

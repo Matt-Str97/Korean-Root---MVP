@@ -5,8 +5,8 @@ from django.shortcuts import render
 
 def inicio(request):
 
-      return render(request, "AppTienda/inicio.html")
+      return render(request, "AppBlog/inicio.html")
 
 def prueba(request):
 
-      return render(request, "AppTienda/padre3.html")
+      return render(request, "AppTienda/padre.html")

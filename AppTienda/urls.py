@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import include, path
 from AppTienda import views
 from django.contrib.auth.views import LogoutView
 urlpatterns = [
@@ -13,4 +13,6 @@ urlpatterns = [
     path('login/', views.loginRequest, name="login"),
     path('perfil/', views.editarUsuario, name="editar_usuario"),
     path('logout/', LogoutView.as_view(template_name = 'AppTienda/logout.html'), name = 'logout'),
+    path('blog/', include('AppBlog.urls')),
+    path('acercaDeNosotros/', views.acerca, name='acerca_de_nosotros'),
 ]

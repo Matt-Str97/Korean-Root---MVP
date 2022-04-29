@@ -2,35 +2,56 @@
 {% load static %}
 
 {% block contenidoQueCambia %}
-     
-    <ul>   
-    
-        
-        {% for publicacion in publicaciones %}
-            
-            <a href="{% url 'publicacion_detalle' id=publicacion.id %}"><h1>{{publicacion.titulo}}</h1></a>        
-            <p>{{publicacion.subtitulo}}</p>
-            {% if publicacion.img_miniatura %}
-                <img src="{{publicacion.img_miniatura.url}}" height="100">
-            {% else %}
-                <img src="\media\miniaturadefault.jpg" height="100"/>
-            {% endif %}
 
-            
-            {% if user.is_staff %}            
-                    
-                <button><a href="{% url 'eliminar_publicacion' id=publicacion.id %}">Eliminar</a></button>
-                <button><a href="{% url 'editar_publicacion' id=publicacion.id %}">Editar</a></button>
+    {% if user.is_staff %}
+        <button><a href="{% url 'crear_publicacion' %}">Crear publicacion</a></button>
+    {% endif %}
+
+    <div style="border-bottom: 2%; border-top: 2%;">
+        <ul>
+            {% if publicaciones %}
                 
+                {% for publicacion in publicaciones %}
+                    
+                    <a href="{% url 'blog:publicacion_detalle' id=publicacion.id %}" style="text-decoration: none; color:inherit;"><h1>{{publicacion.titulo}}</h1></a>        
+                    <p style="font-size: 25px;">{{publicacion.subtitulo}}</p>
+                    {% if publicacion.img_miniatura %}
+                        <img src="{{publicacion.img_miniatura.url}}" width="50%" 
+                        style=
+                        "display: block;
+                        margin-left: auto;
+                        margin-right: auto;
+                        width: 50%;">
+                    {% else %}
+                        <img src="\media\miniaturadefault.jpg" height="100" 
+                        style=
+                        "display: block;
+                        margin-left: auto;
+                        margin-right: auto;
+                        width: 50%;"/>
+                    {% endif %}
+        
+                    
+                    {% if user.is_autenthicated and user.is_staff %}            
+                            
+                        <button><a href="{% url 'eliminar_publicacion' id=publicacion.id %}">Eliminar</a></button>
+                        <button><a href="{% url 'editar_publicacion' id=publicacion.id %}">Editar</a></button>
+                        
+                    {% endif %}
+                    <hr>    
+        
+                {% endfor %}   
+                
+            {% else %}
+                
+                <h3>Aun no hay publicaciones en el blog.</h3>
+
             {% endif %}
-            <hr>    
+            <hr>             
+       
 
-        {% endfor %}          
-
-        {% if user.is_staff %}
-
-            <button><a href="{% url 'crear_publicacion' %}">Crear publicacion</a></button>
-        {% endif %}
-    </ul>
+        </ul>      
+    </div>
+    
 
 {% endblock %}
