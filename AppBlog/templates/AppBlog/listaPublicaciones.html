@@ -4,7 +4,7 @@
 {% block contenidoQueCambia %}
 
     {% if user.is_staff %}
-        <button><a href="{% url 'crear_publicacion' %}">Crear publicacion</a></button>
+        <button><a href="{% url 'blog:crear_publicacion' %}">Crear publicacion</a></button>
     {% endif %}
 
     <div style="border-bottom: 2%; border-top: 2%;">
@@ -21,7 +21,8 @@
                         "display: block;
                         margin-left: auto;
                         margin-right: auto;
-                        width: 50%;">
+                        width: 50%;
+                        height: 10%;">
                     {% else %}
                         <img src="\media\miniaturadefault.jpg" height="100" 
                         style=
@@ -32,19 +33,15 @@
                     {% endif %}
         
                     
-                    {% if user.is_autenthicated and user.is_staff %}            
+                    {% if user.is_staff %}            
                             
-                        <button><a href="{% url 'eliminar_publicacion' id=publicacion.id %}">Eliminar</a></button>
-                        <button><a href="{% url 'editar_publicacion' id=publicacion.id %}">Editar</a></button>
+                        <button><a href="{% url 'blog:eliminar_publicacion' id=publicacion.id %}">Eliminar</a></button>
+                        <button><a href="{% url 'blog:editar_publicacion' id=publicacion.id %}">Editar</a></button>
                         
                     {% endif %}
                     <hr>    
         
                 {% endfor %}   
-                
-            {% else %}
-                
-                <h3>Aun no hay publicaciones en el blog.</h3>
 
             {% endif %}
             <hr>             

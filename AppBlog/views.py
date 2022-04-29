@@ -8,23 +8,22 @@ from django.contrib.admin.views.decorators import staff_member_required
 def inicio(request):
     
     carrusel = ImagenCarrusel.objects.all()
-    carrusel_1 =ImagenCarrusel.objects.all()[0]
-    carrusel_2 =ImagenCarrusel.objects.all()[1]
-    carrusel_3 =ImagenCarrusel.objects.all()[2]
-    carrusel_4 =ImagenCarrusel.objects.all()[3]
-    carrusel_5 =ImagenCarrusel.objects.all()[4]
-    carrusel_6 =ImagenCarrusel.objects.all()[5]
+
+    carrusel_1 = carrusel[0]
+    carrusel_2 = carrusel[1]
+    carrusel_3 = carrusel[2]
+    carrusel_4 = carrusel[3]
+    carrusel_5 = carrusel[4]
+    carrusel_6 = carrusel[5]
     carrusel = [carrusel_2, carrusel_3, carrusel_4, carrusel_5, carrusel_6]
 
     imagenes = ProductoEstrella.objects.all()
 
-    post_1 = Post.objects.all()[0]
-    post_2 = Post.objects.all()[1]
-    publicaciones = [post_1, post_2]
+    posts = Post.objects.all()
 
     return render(request, 'AppBlog/inicio.html', {
     'imagenes': imagenes, 
-    'publicaciones': publicaciones, 
+    'publicaciones': posts, 
     'img_carrusel': carrusel, 
     'carrusel_1': carrusel_1,
     'carrusel_2': carrusel_2,
@@ -74,7 +73,7 @@ def crearPublicacion(request):
             mi_publicacion.save()
 
             messages.success(request, 'La publicacion fue creada con exito!')
-            return redirect('lista_publicaciones')
+            return redirect('/blog/listablog/')
     
     else:
 
@@ -89,7 +88,7 @@ def eliminarPublicacion(request,id):
     publicacion.delete()
 
     messages.success(request, 'Se elimino la publicacion.')
-    return redirect('lista_publicaciones')
+    return redirect('/blog/listablog/')
 
 @staff_member_required
 def editarPublicacion(request,id):
@@ -115,7 +114,7 @@ def editarPublicacion(request,id):
             post.save()
 
             messages.success(request, 'La publicacion fue editada con exito!')
-            return redirect('lista_publicaciones')
+            return redirect('/blog/listablog/')
     
     else:
         form = CrearPublicacionForm(initial= {'titulo': post.titulo, 'subtitulo': post.subtitulo, 'cuerpo': post.cuerpo, 'fecha_creacion': post.fecha_creacion, 'autor': post.autor, 
@@ -138,7 +137,7 @@ def agregarCarrusel(request):
             mi_carrusel.save()
 
             messages.success(request, 'Imagen agregada al carrusel!')
-            return redirect('imagenes_carrusel')
+            return redirect('/blog/imagenesCarrusel/')
     
     else:
         form = AgregarCarrusel()
@@ -173,18 +172,19 @@ def editarCarrusel(request,id):
             carrusel.save()
 
             messages.success (request, 'Se edito el carrusel con exito.')
-            return redirect('imagenes_carrusel')
+            return redirect('/blog/imagenesCarrusel/')
     else:
         form = AgregarCarrusel(initial= {'imagen': carrusel.imagen, 'titulo': carrusel.titulo, 'texto': carrusel.texto})
     
     return render(request, 'AppBlog/editar_carrusel.html', {'form': form})
 
+@staff_member_required
 def eliminarCarrusel(request,id):
     imagen = ImagenCarrusel.objects.get(id=id)
     imagen.delete()
 
     messages.success(request, 'Se elimino la imagen del carrusel')
-    return redirect('imagenes_carrusel')
+    return redirect('/blog/imagenesCarrusel/')
     
 
 # Productos estrella
@@ -202,20 +202,22 @@ def agregarProductoEstrella(request):
             mi_producto.save()
 
             messages.success(request, 'Producto estrella creado con exito!')
-            return redirect('ver_prod_estrella')
+            return redirect('/blog/verProdEstrella/')
     
     else:
         form = AgregarProductoEstrella()
 
     return render(request, 'AppBlog/nuevo_prod_estrella.html', {'form': form})
 
+@staff_member_required
 def eliminarProdEstrella(request, id):
     producto = ProductoEstrella.objects.get(id=id)
     producto.delete()
 
     messages.success(request, 'Se elimino el producto estrella.')
-    return redirect('ver_prod_estrella')
+    return redirect('/blog/verProdEstrella/')
 
+@staff_member_required
 def verProdEstrella(request):
 
     productos = ProductoEstrella.objects.all()
@@ -225,6 +227,7 @@ def verProdEstrella(request):
         messages.error(request, 'No hay productos estrella')
         return render(request, 'AppBlog/productos_estrella.html')
 
+@staff_member_required
 def editarProdEstrella(request, id):
 
     producto = ProductoEstrella.objects.get(id=id)
@@ -241,7 +244,7 @@ def editarProdEstrella(request, id):
             producto.save()
 
             messages.success(request, 'Producto editado con exito.')
-            return redirect('ver_prod_estrella')
+            return redirect('/blog/verProdEstrella/')
     else:
         form = AgregarProductoEstrella(initial= {'titulo': producto.titulo, 'imagen': producto.imagen})
     

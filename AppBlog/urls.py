@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import agregarCarrusel, agregarProductoEstrella, crearPublicacion, editarCarrusel, editarProdEstrella, editarPublicacion, eliminarCarrusel, eliminarProdEstrella, eliminarPublicacion, imagenesCarrusel, publicacionDetalle, publicaciones, verProdEstrella
+from .views import agregarCarrusel, agregarProductoEstrella, crearPublicacion, editarCarrusel, editarProdEstrella, editarPublicacion, eliminarCarrusel, eliminarProdEstrella, eliminarPublicacion, imagenesCarrusel, publicacionDetalle, publicaciones, verProdEstrella, inicio
 
 app_name = 'blog'
 

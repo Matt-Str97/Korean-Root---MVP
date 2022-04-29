@@ -81,7 +81,7 @@
                     <li 
                     class="nav-item active">
                     <a 
-                    href="{% url 'tienda:acerca_de_nosotros' %}" 
+                    href="{% url 'acerca_de_nosotros' %}" 
                     class="nav-link" 
                     style="text-decoration: none; color:inherit;"
                     >
@@ -99,7 +99,7 @@
                       </a>
                       <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                           <li style="text-align: center;">
-                              <a href="{% url 'tienda:Formaciones' %}" style="text-decoration: none; color:inherit;">Formaciones disponibles</a></li>
+                              <a href="{% url 'capacitaciones' %}" style="text-decoration: none; color:inherit;">Formaciones disponibles</a></li>
                           <li style="text-align: center;">
                               <a 
                               class="dropdown-item" 
@@ -122,72 +122,66 @@
                 </ul>
             </div>
             </div>
-            {% if user.is_autenthicated and user.is_staff %}
-            <div class="d-grid gap-2 d-sm-flex justify-content-end" style="width: 5rem;">
-              <button class="btn btn-outline" type="button">
-                  <a 
-                  href="{% url 'tienda:acerca_de_nosotros' %}" 
-                  style="text-decoration: none; color:inherit;"
-                  >
-                  Iniciar sesion
-                </a>
-              </button>
-              <button 
-              class="btn btn-outline" 
-              type="button"
-              style="text-decoration: none; color:inherit;"
-              >
-              Registrarse
-              </button>
-            </div>
-
-
-            {% else %}
-            <div class="d-grid gap-2 d-sm-flex justify-content-end" style="width: 5rem;">
+            {% if user.is_authenticated %}
+              <div class="d-grid gap-2 d-sm-flex justify-content-end" style="width: 5rem;">
                 <button class="btn btn-outline" type="button">
                     <a 
-                    href="{% url 'tienda:acerca_de_nosotros' %}" 
+                    href="{% url 'logout' %}" 
                     style="text-decoration: none; color:inherit;"
                     >
-                    Iniciar sesion
-                  </a>
+                    Cerrar sesion
+                    </a>
                 </button>
                 <button 
                 class="btn btn-outline" 
                 type="button"
                 style="text-decoration: none; color:inherit;"
                 >
-                Registrarse
+                <a 
+                    href="{% url 'carrito' %}" 
+                    style="text-decoration: none; color:inherit;"
+                    >
+                    Carrito
+                </a>
                 </button>
+              </div>
+            {% else %}
+              <div class="d-grid gap-2 d-sm-flex justify-content-end" style="width: 5rem;">
+                  <button class="btn btn-outline" type="button">
+                    <a 
+                    href="{% url 'login' %}" 
+                    style="text-decoration: none; color:inherit;"
+                    >
+                    Iniciar sesion
+                    </a>                   
+                  </button>
+                  <button 
+                    class="btn btn-outline" 
+                    type="button"
+                    style="text-decoration: none; color:inherit;"
+                    >
+                    <a 
+                      href="{% url 'registro_usuario' %}" 
+                      style="text-decoration: none; color:inherit;"
+                      >
+                      Registrarse
+                    </a>
+                  </button>
               </div>
             {% endif %}
         </nav>
-<<<<<<< HEAD
-
-<!-- Header-->
-<header class="bg-danger py-1">
-    <div class="container px-3 px-lg-3 my-3">
-        <div class="text-center text-white">
-            <h1 class="display-4 fw-bolder">Shop in style</h1>
-            <p class="lead fw-normal text-white-50 mb-0">With this shop hompeage template</p>
-        </div>
-    </div>
-</header>        
+ 
+    {% if messages %}     
         
-        {% if messages %}     
-            
-            {% for mensaje in messages %}
-                <div class="alert alert-{{ mensaje.tags }}">{{mensaje}}</div>
-            {% endfor %}                
-=======
-    
->>>>>>> conexiones
+        {% for mensaje in messages %}
+            <div class="alert alert-{{ mensaje.tags }}">{{mensaje}}</div>
+        {% endfor %}                
 
-        {% endif %}
-            
-            
-        {% block contenidoQueCambia %}
-        {% endblock %}
+    {% endif %}
+        
+        
+    {% block contenidoQueCambia %}
+    {% endblock %}
 
           
     
@@ -207,8 +201,8 @@
           <ul class="col-3 list-unstyled">
             <li class="font-weight-bold text-uppercase">Navegación</li>
             <li><a href="{% url 'blog:lista_publicaciones' %}" class="text-reset" style="text-decoration: none; color:inherit;">Blog</a></li>
-            <li><a href="{% url 'tienda:acerca_de_nosotros' %}" class="text-reset" style="text-decoration: none; color:inherit;">Acerca de nosotros</a></li>
-            <li><a href="{% url 'tienda:Formaciones' %}" class="text-reset" style="text-decoration: none; color:inherit;">Formaciones</a></li>
+            <li><a href="{% url 'acerca_de_nosotros' %}" class="text-reset" style="text-decoration: none; color:inherit;">Acerca de nosotros</a></li>
+            <li><a href="{% url 'capacitaciones' %}" class="text-reset" style="text-decoration: none; color:inherit;">Formaciones</a></li>
           </ul>
           <!--Redes-->       
           <ul class="col-3 list-unstyled">
