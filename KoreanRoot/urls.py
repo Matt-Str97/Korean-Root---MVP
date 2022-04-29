@@ -27,6 +27,4 @@ urlpatterns = [
     path('tienda/', include('AppTienda.urls')),
     path('blog/', include('AppBlog.urls')),
     path('prueba/', prueba, name='Prueba'),
-    
-
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -5,7 +5,6 @@
 
 <div id="carousel-item" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-inner">
-      {% for imagen in imagenes %}
       <div class="carousel-item active">
         <img src="{{imagen.imagen.url}}" height="600rem" class="d-block w-100" alt="longdesc">
         <div class="carousel-caption d-none d-md-block">
@@ -13,7 +12,6 @@
           <p>{{imagen.texto}}</p>
         </div>
       </div>
-      {% endfor %}
       <button class="carousel-control-prev" type="button" data-bs-target="#carousel-item" data-bs-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Previous</span>
@@ -28,9 +26,9 @@
   
 
   <h2 style="
-  margin-left: 2rem;
+  margin-left: 3%;
   margin-bottom: 1rem;
-  margin-top: 2rem;
+  margin-top: 3%;
   ">Nuestros productos estrella!</h2>
 
 
@@ -38,7 +36,7 @@
     <div class="row">
       <div class="col">
         <div class="card" style="width: 18rem; align-self: right;">
-          <img src="imagenes/destacado1.jpg" class="card-img-top" alt="Producto 1">
+          <img src="{{ imagen1.imagen.url }}" class="card-img-top" alt="Producto 1">
           <div class="card-body">
             <p class="card-text">Producto 1</p>
           </div>
@@ -82,7 +80,7 @@
   </div>
 
 
-<div style="margin-left: 3rem; margin-right: 3rem;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam, iure ullam? Eos quia cupiditate, eligendi molestiae possimus odio, harum, nam temporibus ad iure ut quos sequi atque odit nulla sed!
+<div style="margin-left: 3%; margin-right: 3%; margin-bottom: 2rem;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam, iure ullam? Eos quia cupiditate, eligendi molestiae possimus odio, harum, nam temporibus ad iure ut quos sequi atque odit nulla sed!
 Labore et eos officiis saepe ut, expedita ratione perspiciatis illum praesentium est! At fugiat ipsum, illum corrupti commodi corporis veritatis assumenda. Eaque sapiente tempore dignissimos aliquam, quam porro atque odit.
 Nulla culpa necessitatibus, magnam quisquam suscipit maiores voluptate cum est ea omnis facilis rem iure reprehenderit itaque eum error dolorum, quam voluptas. A, provident quae odit asperiores officia corrupti temporibus!
 Temporibus saepe pariatur quidem sunt totam quaerat voluptatem perspiciatis voluptatibus eligendi nisi ipsa nobis minus iure beatae debitis animi architecto quisquam repellendus, sint iusto velit voluptate. Nobis ullam est ea.

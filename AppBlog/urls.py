@@ -1,10 +1,11 @@
 from unicodedata import name
 from django.urls import path
-from .views import agregarCarrusel, agregarProductoEstrella, crearPublicacion, editarPublicacion, eliminarPublicacion, publicacionDetalle, publicaciones, ver_carrusel
+from .views import agregarCarrusel, agregarProductoEstrella, crearPublicacion, editarPublicacion, eliminarPublicacion, inicio, publicacionDetalle, publicaciones, ver_carrusel
 
 app_name = 'blog'
 
 urlpatterns = [
+    path('', inicio, name="Inicio"),
     path('listablog/', publicaciones, name='lista_publicaciones'),
     path('blogPost/<id>', publicacionDetalle, name='publicacion_detalle'),
     path('crearPublicacion/', crearPublicacion, name='crear_publicacion'),
@@ -12,5 +13,5 @@ urlpatterns = [
     path('editarPublicacion/<id>', editarPublicacion, name='editar_publicacion'),
     path('crearCarrusel/', agregarCarrusel, name='agregar_carrusel'),
     path('verCarrusel/', ver_carrusel, name='agregar_carrusel'),
-    path('crearProductoEstrella/', agregarProductoEstrella, name='agregar_prod_estrella')
+    path('crearProductoEstrella/', agregarProductoEstrella, name='agregar_prod_estrella'),
 ]

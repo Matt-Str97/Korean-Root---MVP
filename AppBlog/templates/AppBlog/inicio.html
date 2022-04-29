@@ -1,0 +1,245 @@
+{% extends 'AppTienda/padre.html' %}
+{% load static %}
+
+{% block contenidoQueCambia %}
+
+<style>
+  .carousel-item {
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+            height: 30rem;
+            background: rgb(255, 255, 255);
+  }
+
+</style>
+
+<div id="carousel-item" class="carousel slide" data-bs-ride="carousel" style="height: 30rem;">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carousel-item" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carousel-item" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carousel-item" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    <button type="button" data-bs-target="#carousel-item" data-bs-slide-to="3" aria-label="Slide 4"></button>
+    <button type="button" data-bs-target="#carousel-item" data-bs-slide-to="4" aria-label="Slide 5"></button>
+    <button type="button" data-bs-target="#carousel-item" data-bs-slide-to="5" aria-label="Slide 6"></button>
+  </div>
+    <div class="carousel-inner" style="height: 30rem;">
+      <div class="carousel-item active">
+        <div>
+          <img 
+          src="{{carrusel_1.imagen.url}}" 
+          class="d-block w-100"
+          alt="longdesc">
+        </div>
+        
+        <div class="carousel-caption d-none d-md-block">
+          <h5>{{ carrusel_1.titulo.url }}</h5>
+          <p>{{ carrusel_1.texto.url }}</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img 
+        src="{{carrusel_2.imagen.url}}" 
+        style=
+        "display: block;
+        max-height: 30rem;
+        margin-left: auto;
+        margin-right: auto;
+        width: auto;"
+        alt="longdesc">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>{{ carrusel_2.titulo.url }}</h5>
+          <p>{{ carrusel_2.texto.url }}</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img 
+        src="{{carrusel_3.imagen.url}}" 
+        style=
+        "display: block;
+        max-height: 30rem;
+        margin-left: auto;
+        margin-right: auto;
+        width: auto;"
+        alt="longdesc">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>{{ carrusel_3.titulo.url }}</h5>
+          <p>{{ carrusel_3.texto.url }}</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img 
+        src="{{carrusel_4.imagen.url}}" 
+        style=
+        "display: block;
+        max-height: 30rem;
+        margin-left: auto;
+        margin-right: auto;
+        width: auto;"
+        alt="longdesc">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>{{ carrusel_4.titulo.url }}</h5>
+          <p>{{ carrusel_4.texto.url }}</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img 
+        src="{{carrusel_5.imagen.url}}" 
+        style=
+        "display: block;
+        max-height: 30rem;
+        margin-left: auto;
+        margin-right: auto;
+        width: auto;"
+        alt="longdesc">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>{{ carrusel_5.titulo.url }}</h5>
+          <p>{{ carrusel_5.texto.url }}</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img 
+        src="{{carrusel_6.imagen.url}}" 
+        style=
+        "display: block;
+        max-height: 30rem;
+        margin-left: auto;
+        margin-right: auto;
+        width: auto;"
+        alt="longdesc">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>{{ carrusel_6.titulo.url }}</h5>
+          <p>{{ carrusel_6.texto.url }}</p>
+        </div>
+      </div>
+    </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carousel-item" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carousel-item" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+  </div>
+  
+
+  <h2 style="
+  margin-left: 3%;
+  margin-bottom: 1rem;
+  margin-top: 3%;
+  ">Nuestros productos estrella!</h2>
+
+  {% for imagen in imagenes %}
+  <div class="row" style="margin-bottom: 1rem; margin-left: 3rem; margin-right: 3rem;">
+    <div class="col-4">
+        <div 
+        style=
+        "margin-top: 3rem;
+        display: block;
+        align-items: center;
+        width: auto;"
+        >
+            <img 
+            src="{{ imagen.imagen.url }}" 
+            alt="" 
+            style=
+            "display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 70%;"
+            >
+        </div>
+    </div>
+    <div class="col-6" style="margin-top: 1.5rem;">
+      <div class="btn-group" role="group">
+        <button 
+        id="btnGroupDrop1" 
+        type="button" 
+        class="btn btn-primary dropdown-toggle" 
+        data-bs-toggle="dropdown" 
+        aria-expanded="false"
+        style=
+        "text-decoration: none; 
+        color:inherit;
+        background-color: aliceblue;
+        color: black;
+        border-color: aliceblue;"
+        >
+          {{ imagen.titulo }}
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+          <li><a class="dropdown-item" href="#">Argentina</a></li>
+          <li><a class="dropdown-item" href="#">España</a></li>
+          <li><a class="dropdown-item" href="#">Mexico</a></li>
+        </ul>
+      </div>
+      <h4 style="font-size: 30px; margin-bottom: 1rem; "><a href="" style="text-decoration: none; color:inherit;"></a></h4>
+      <hr>
+      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Esse beatae, deleniti architecto ab exercitationem culpa libero aliquid ullam placeat nulla illum nihil, accusamus laborum porro veritatis et molestiae ex error!
+      Repudiandae quod totam tenetur error tempora odit nulla! Unde autem eaque dolorum optio blanditiis suscipit sint quam, earum nesciunt nihil reiciendis animi dolorem minus nam eligendi obcaecati consequatur ut! In?
+    </div>
+  </div>
+  {% endfor %}
+
+
+
+<hr style="margin-left: 2%; margin-right: 2%;">
+
+
+
+<h2 style="
+  margin-left: 3%;
+  margin-bottom: 1rem;
+  margin-top: 3%;
+  ">Visita nuestro blog</h2>
+
+
+<div style="margin-bottom: 5rem; margin-top: 2%; margin-left: 3%; margin-right: 3%;">
+  
+  
+
+        <ul>
+          {% if publicaciones %}
+                
+              {% for publicacion in publicaciones %}
+              <a href="{% url 'blog:publicacion_detalle' id=publicacion.id %}" style="text-decoration: none; color:inherit;"><h3>{{publicacion.titulo}}</h3></a>
+              <p style="font-size: 20px;">{{publicacion.subtitulo}}</p>
+              {% if publicacion.img_miniatura %}
+                  <img src="{{publicacion.img_miniatura.url}}" width="50%" 
+                  style=
+                  "display: block;
+                  margin-left: auto;
+                  margin-right: auto;
+                  width: 50%;">
+              {% else %}
+                  <img src="\media\miniaturadefault.jpg" height="100" 
+                  style=
+                  "display: block;
+                  margin-left: auto;
+                  margin-right: auto;
+                  width: 50%;"/>
+              {% endif %}
+  
+              
+              {% if user.is_autenthicated and user.is_staff %}            
+                      
+                  <button><a href="{% url 'eliminar_publicacion' id=publicacion.id %}">Eliminar</a></button>
+                  <button><a href="{% url 'editar_publicacion' id=publicacion.id %}">Editar</a></button>
+                  
+              {% endif %}
+              <hr>    
+  
+          {% endfor %}   
+          
+      {% else %}
+          
+          <h3>Aun no hay publicaciones en el blog.</h3>
+
+      {% endif %}
+      </ul>        
+</div>
+
+
+
+{% endblock %}
