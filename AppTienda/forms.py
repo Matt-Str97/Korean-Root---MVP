@@ -1,7 +1,8 @@
+from pyexpat import model
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-
+from ckeditor.widgets import CKEditorWidget
 
 class UserRegisterForm(UserCreationForm):
     email = forms.EmailField()
@@ -22,3 +23,12 @@ class UserEditForm(UserCreationForm):
     class Meta:
         model = User
         fields = ['email', 'first_name', 'last_name', 'password1', 'password2']
+
+class FormacionCreationForm(forms.Form):
+    nombre = forms.CharField()
+    precio = forms.IntegerField()
+    descripcion = forms.CharField(widget=CKEditorWidget())
+    fecha_inicio = forms.DateField(widget=forms.widgets.DateInput(attrs={'type':'date'}))
+    imagen_miniatura = forms.ImageField()
+    imagen_portada = forms.ImageField()
+    link_capacitacion = forms.CharField()

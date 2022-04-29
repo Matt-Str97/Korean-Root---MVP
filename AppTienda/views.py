@@ -3,8 +3,9 @@ from django.contrib import messages
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
-from .forms import UserRegisterForm, UserEditForm
+from .forms import FormacionCreationForm, UserRegisterForm, UserEditForm
 from .models import Capacitacion, Operaciones
+from django.contrib.admin.views.decorators import staff_member_required
 
 # Creacion de usuario y login
 def crearUsuario(request):
@@ -69,6 +70,61 @@ def capacitacionDetalle(request,id):
 
       return render(request, 'AppTienda/formacionDetalle.html', {'curso': curso})
 
+@staff_member_required
+def crearCapacitacion(request):
+
+      if request.method == 'POST':
+
+            form = FormacionCreationForm(request.POST, request.FILES)
+
+            if form.is_valid():
+                  info = form.cleaned_data
+                  nuevaCapacitacion = Capacitacion(nombre=info['nombre'],precio=info['precio'],descripcion=info['descripcion'],fecha_inicio=info['fecha_inicio'],
+                  imagen_miniatura=info['imagen_miniatura'],imagen_portada=info['imagen_portada'],link_capacitacion=info['link_capacitacion'])
+
+                  nuevaCapacitacion.save()
+
+                  messages.success(request, 'capacitacion creada con exito!')
+                  return redirect('capacitaciones')
+      else:
+            form = FormacionCreationForm()
+
+      return render(request, 'AppTienda/crearFormacion.html', {'form': form})
+
+@staff_member_required
+def eliminarCapacitacion(request,id):
+      formacion = Capacitacion.objects.get(id=id)
+      formacion.delete()
+
+      messages.success(request, 'Formacion eliminada.')
+      return redirect('capacitaciones')
+
+@staff_member_required
+def editarCapacitacion(request,id):
+      capacitacion = Capacitacion.objects.get(id=id)
+      
+      if request.method == 'POST':
+
+            form = FormacionCreationForm(request.POST, request.FILES)
+
+            if form.is_valid():
+                  info = form.cleaned_data
+                  capacitacion.nombre = info['nombre']
+                  capacitacion.precio = info['precio']
+                  capacitacion.descripcion = info['descripcion']
+                  capacitacion.fecha_inicio = info['fecha_inicio']
+                  capacitacion.imagen_miniatura = info['imagen_miniatura']
+                  capacitacion.imagen_portada = info['imagen_portada']
+                  capacitacion.link_capacitacion = info['link_capacitacion']
+                  capacitacion.save()
+
+                  messages.success(request, 'capacitacion editada con exito!')
+                  return redirect('capacitaciones')
+      else:
+            form = FormacionCreationForm(initial= {'nombre': capacitacion.nombre, 'precio': capacitacion.precio, 'descripcion': capacitacion.descripcion,'fecha_inicio': capacitacion.fecha_inicio,
+            'imagen_miniatura': capacitacion.imagen_miniatura,'imagen_portada': capacitacion.imagen_portada,'link_capacitacion': capacitacion.link_capacitacion})
+
+      return render(request, 'AppTienda/editarFormacion.html', {'form': form})
 
 # Carrito
 @login_required
