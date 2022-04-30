@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'AppBlog',
     'AppTienda',
     'ckeditor',
+    'crispy_forms',
 
 ]
 

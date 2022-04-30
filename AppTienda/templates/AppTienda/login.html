@@ -1,12 +1,12 @@
 {% extends 'AppTienda/padre.html' %}
 {% load static %}
-
+{% load crispy_forms_tags %}
 {% block contenidoQueCambia %}
 
     <form method="POST">
         {% csrf_token %}
 
-        {{ form.as_p }}
+        {{ form|crispy }}
 
         <button type="submit">Iniciar Sesion</button>
 
