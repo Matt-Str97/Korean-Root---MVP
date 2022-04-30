@@ -15,7 +15,17 @@
 
         {{ form|crispy }}
 
+{% extends 'AppTienda/padre.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block contenidoQueCambia %}
+
+    <form method="POST">
+        {% csrf_token %}
+
+        {{form|crispy}}
         <button type="submit">Guardar cambios</button>
     </form>
-</body>
-</html>
+
+
+{% endblock %}

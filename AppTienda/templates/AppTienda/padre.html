@@ -124,6 +124,23 @@
             </div>
             {% if user.is_authenticated %}
               <div class="d-grid gap-2 d-sm-flex justify-content-end" style="width: 6rem; margin-right: 2rem;">
+              <div class="d-grid gap-2 d-sm-flex justify-content-end" style="width: 5rem;">
+                <button class="btn btn-outline" type="button">
+                    <a 
+                    href="{% url 'logout' %}" 
+                    style="text-decoration: none; color:inherit;"
+                    >
+                    Cerrar sesion
+                    </a>
+                </button>
+                <button class="btn btn-outline" type="button">
+                  <a 
+                  href="{% url 'mis_capacitaciones' %}" 
+                  style="text-decoration: none; color:inherit;"
+                  >
+                  Mis capacitaciones
+                  </a>
+                </button> 
                 <button 
                 class="btn btn-outline" 
                 type="button"

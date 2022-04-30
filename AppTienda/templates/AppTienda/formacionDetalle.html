@@ -40,4 +40,9 @@
 </div>
 <div style="margin-top: 2rem;"></div>
 
+    <h1>{{curso.nombre}}</h1>
+    <img src="{{curso.imagen_portada.url}}" height="500" />
+    <p>{{curso.descripcion|safe}}</p>
+    <p>{{curso.fecha_inicio}}</p>
+    <a href="{% url 'agregar_producto' id=curso.id %}">Agregar al carrito</a>
 {% endblock %}
