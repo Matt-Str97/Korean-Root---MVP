@@ -7,14 +7,18 @@
     <title>Document</title>
 </head>
 <body>
-    <form method="POST" enctype="multipart/form-data"> 
+    {% load crispy_forms_tags %}
 
+    <form method="POST" class="col-lg-X" style="margin-right: 2rem; margin-left: 2rem; margin-bottom: 2rem;">
         {% csrf_token %}
 
-        {{form.as_p}}
+        {{ form|crispy }}
 
         <button type="submit">Guardar cambios</button>
-
     </form>
+
+
+
+
 </body>
 </html>

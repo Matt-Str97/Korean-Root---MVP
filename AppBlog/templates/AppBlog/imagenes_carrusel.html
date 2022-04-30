@@ -5,7 +5,11 @@
      
     <ul>   
     
-        
+        {% if user.is_staff %}
+
+            <button><a href="{% url 'blog:crear_carrusel' %}">Crear Imagen</a></button>
+            <hr>
+        {% endif %}
         {% for imagen in imagenes %}
 
             <img src="{{imagen.imagen.url}}" height="100">               
@@ -13,19 +17,15 @@
             
             {% if user.is_staff %}            
                     
-                <button><a href="{% url 'eliminar_carrusel' id=imagen.id %}">Eliminar</a></button>
-                <button><a href="{% url 'editar_carrusel' id=imagen.id %}">Editar</a></button>
+                <button><a href="{% url 'blog:eliminar_carrusel' id=imagen.id %}">Eliminar</a></button>
+                <button><a href="{% url 'blog:editar_carrusel' id=imagen.id %}">Editar</a></button>
                 
             {% endif %}
             <hr>    
 
         {% endfor %}          
 
-        {% if user.is_staff %}
-
-            <button><a href="{% url 'crear_carrusel' %}">Crear Imagen</a></button>
-            
-        {% endif %}
+        
     </ul>
 
 {% endblock %}

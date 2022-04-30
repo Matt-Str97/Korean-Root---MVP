@@ -3,6 +3,93 @@
 
 {% block contenidoQueCambia %}
 
-    <h1>Un titulo para rellenar...</h1>
+<div id="carousel-item" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="{{imagen.imagen.url}}" height="600rem" class="d-block w-100" alt="longdesc">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>{{imagen.titulo}}</h5>
+          <p>{{imagen.texto}}</p>
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carousel-item" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carousel-item" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+  </div>
+  
+  
+
+  <h2 style="
+  margin-left: 3%;
+  margin-bottom: 1rem;
+  margin-top: 3%;
+  ">Nuestros productos estrella!</h2>
+
+
+  <div class="container" style="margin-bottom: 2rem;">
+    <div class="row">
+      <div class="col">
+        <div class="card" style="width: 18rem; align-self: right;">
+          <img src="{{ imagen1.imagen.url }}" class="card-img-top" alt="Producto 1">
+          <div class="card-body">
+            <p class="card-text">Producto 1</p>
+          </div>
+        </div>              
+      </div>
+      <div class="col">
+        <div class="card" style="width: 18rem;">
+          <img src="imagenes/destacado2.jpg" class="card-img-top" alt="Producto 2">
+          <div class="card-body">
+            <p class="card-text">Producto 2</p>
+          </div>
+        </div>              
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <div class="card" style="width: 18rem;">
+          <img src="imagenes/destacado3.jpg" class="card-img-top" alt="Producto 3">
+          <div class="card-body">
+            <p class="card-text">Producto 3</p>
+          </div>
+        </div>              
+      </div>
+      <div class="col">
+        <div class="card" style="width: 18rem;">
+          <img src="imagenes/destacado4.jpg" class="card-img-top" alt="Producto 4">
+          <div class="card-body">
+            <p class="card-text">Producto 4</p>
+          </div>
+        </div>              
+      </div>
+      <div class="col">
+        <div class="card" style="width: 18rem;">
+          <img src="imagenes/destacado5.jpg" class="card-img-top" alt="Producto 5">
+          <div class="card-body">
+            <p class="card-text">Producto 5</p>
+          </div>
+        </div>              
+      </div>
+    </div>
+  </div>
+
+
+<div style="margin-left: 3%; margin-right: 3%; margin-bottom: 2rem;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam, iure ullam? Eos quia cupiditate, eligendi molestiae possimus odio, harum, nam temporibus ad iure ut quos sequi atque odit nulla sed!
+Labore et eos officiis saepe ut, expedita ratione perspiciatis illum praesentium est! At fugiat ipsum, illum corrupti commodi corporis veritatis assumenda. Eaque sapiente tempore dignissimos aliquam, quam porro atque odit.
+Nulla culpa necessitatibus, magnam quisquam suscipit maiores voluptate cum est ea omnis facilis rem iure reprehenderit itaque eum error dolorum, quam voluptas. A, provident quae odit asperiores officia corrupti temporibus!
+Temporibus saepe pariatur quidem sunt totam quaerat voluptatem perspiciatis voluptatibus eligendi nisi ipsa nobis minus iure beatae debitis animi architecto quisquam repellendus, sint iusto velit voluptate. Nobis ullam est ea.
+Eveniet, delectus sunt repudiandae voluptate placeat ex ea non minus quo architecto quae quaerat expedita est sit nisi vitae perferendis veniam, id debitis. Asperiores mollitia ipsam amet eos minima atque?
+</div>
+
+
+
+
+  <img src="/media/miniaturas_blog/VivirConSalud_9l4I2VB.png" width="150">
 
 {% endblock %}

@@ -7,14 +7,13 @@
     <title>Document</title>
 </head>
 <body>
-    <form method="POST" enctype="multipart/form-data"> 
-
+    <form method="POST" class="col-lg-X" style="margin-right: 2rem; margin-left: 2rem; margin-bottom: 2rem;">
         {% csrf_token %}
 
-        {{form.as_p}}
+        {{ form|crispy }}
 
         <button type="submit">Publicar</button>
-
     </form>
+
 </body>
 </html>

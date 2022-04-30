@@ -3,7 +3,7 @@ from django.contrib import messages
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
-from .forms import UserRegisterForm
+from .forms import UserRegisterForm, UserEditForm
 from .models import Capacitacion, Operaciones
 
 # Creacion de usuario y login
@@ -58,6 +58,8 @@ def loginRequest(request):
 def capacitaciones(request):
     
       cursos_lista = Capacitacion.objects.all()
+      if cursos_lista.count() <= 0:
+            messages.error(request, 'Aun no hay formaciones disponibles.')
 
       return render(request, 'AppTienda/formacion.html', {'cursos_lista': cursos_lista})
 
@@ -153,3 +155,35 @@ def misCursos(request):
       else:
             messages.error(request, 'Usted no posee ninguna capacitacion')
             return redirect('Inicio')
+
+@login_required
+def editarUsuario(request):
+
+      usuario = request.user
+
+      if request.method == 'POST':
+            form = UserEditForm(request.POST)
+
+            if form.is_valid():
+                  info = form.cleaned_data
+
+                  usuario.email = info['email']
+                  usuario.first_name = info['first_name']
+                  usuario.last_name = info['last_name']
+                  usuario.password1 = info['password1']
+                  usuario.password2 = info['password2']
+                  usuario.save()
+
+                  messages.success(request, 'Perfil editado con exito.')
+                  return redirect('Inicio')
+
+      else:
+            form = UserEditForm(initial={'email': usuario.email,'first_name': usuario.first_name,'last_name': usuario.last_name})
+            
+      return render(request, 'AppTienda/perfil_usuario.html', {'form': form})
+
+# About us
+def acerca(request):
+
+      return render(request, "AppTienda/acerca.html")
+

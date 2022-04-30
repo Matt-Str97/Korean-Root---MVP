@@ -19,14 +19,14 @@ class Post(models.Model):
 class ImagenCarrusel(models.Model):
     titulo = models.CharField(max_length=70)
     texto = models.CharField(max_length=200)
-    imagen = models.ImageField(upload_to='carrusel', default='imgcarruseldefault.jpg', null=True, blank=True)
+    imagen = models.ImageField(upload_to='carrusel', default=None)
 
     def __str__(self):
         return f'{self.titulo}'
 
 class ProductoEstrella(models.Model):
     titulo = models.CharField(max_length=50)
-    imagen = models.ImageField(upload_to='productos_estrella', default='imgestrelladefault.jpg', null=True, blank=True)
+    imagen = models.ImageField(upload_to='productos_estrella', default=None)
     
     def __str__(self):
         return f'{self.titulo}'

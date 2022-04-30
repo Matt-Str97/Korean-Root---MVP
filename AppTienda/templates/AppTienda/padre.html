@@ -1,143 +1,242 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-    <head>
+  <head>
 
-        {% load static %}
+    {% load static %}
 
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
-        <title>Korean Root</title>
-        <!-- Favicon-->
-        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-        <!-- Bootstrap icons-->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
-        <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="{% static 'AppTienda/css/styles.css' %}" rel="stylesheet" />
-        <link href="{% static 'AppTienda/css/styles_inicio.css' %}" rel="stylesheet" />
-    </head>
-    <body>
-        <!-- Navigation-->
-        <nav class="navbar navbar-expand-lg navbar-light bg-light"> <!--Barra horizontal-->>
-            <div class="container px-4 px-lg-5">
-                <a class="navbar-brand" href="{% url 'Inicio' %}">Korean Root</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'Inicio' %}">Inicio</a></li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Tienda</a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="https://www.koreanroot.com.ar/">Korean Root Argentina</a></li>
-                                <li><hr class="dropdown-divider" /></li>
-                                <li><a class="dropdown-item" href="#!">Korean Root España</a></li>
-                                <li><hr class="dropdown-divider" /></li>
-                                <li><a class="dropdown-item" href="#!">Korean Root México</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'lista_publicaciones' %}">Blog</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#!">Acerca de nosotros</a></li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Formaciones</a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#!">Formaciones disponibles</a></li>
-                                <li><hr class="dropdown-divider" /></li>
-                                
-                                <li><hr class="dropdown-divider" /></li>
-                                <li><a class="dropdown-item" href="#!">Canales Youtube/Instagram</a></li>
-                            </ul>
-                        </li>
-                        
-                        {% if user.is_authenticated %}                        
-                            <li class="nav-item"><a class="nav-link active" href="{% url 'logout' %}">Cerrar sesión</a></li>
-                        {% else %}                            
-                            <li class="nav-item"><a class="nav-link active" href="{% url 'login' %}">Iniciar sesión</a></li>
-                            <li class="nav-item"><a class="nav-link active" href="{% url 'registro_usuario' %}">Registrarse</a></li>
-                        {% endif %}
-                    </ul>
-                    <form class="d-flex" >
-                        <a class="btn btn-outline-secondary" href="{% url 'carrito' %}">
-                            <i class="bi-cart-fill me-1"></i>
-                            Cart
-                            <span class="badge bg-secondary text-white ms-1 rounded-pill">0</span>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <title>Korean Root</title>
+  </head>
+
+
+  <body class="body">
+    
+
+    <style>
+        .body {
+            background-color:rgb(255, 255, 255); 
+            display: flex; 
+            flex-direction: column; 
+            min-height: 100vh;
+        }
+
+
+        .footer {
+            background-color: darksalmon;
+            position: relative;
+            margin-top: auto;
+            clear:both;
+        }
+    </style>
+    
+    
+        <nav class="navbar navbar-expand-sm navbar-light" style="background-color:darksalmon">
+            <div class="container">
+            <a href="{% url 'blog:Inicio' %}" class="navbar-brand mb-0 h1" style="text-emphasis-color: aliceblue; margin-right: 1rem;">Korean Root</a>
+            <button 
+            class="navbar-toggler" 
+            type="button" 
+            data-bs-toggle="collapse" 
+            data-bs-target="#navbarNav" 
+            aria-controls="navbarNav" 
+            aria-expanded="false" 
+            aria-label="Toggle navigation"
+            >
+            <span class="navbar-toggler-icon"></span>
+            </button>
+    
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                        <a href="#" 
+                        class="nav-link dropdown-toggle" 
+                        id="navbarDropdown" 
+                        role="button" 
+                        data-bs-toggle="dropdown" 
+                        aria-expanded="false"
+                        >Tienda
                         </a>
-                    </form>
-                </div>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a href="https://www.koreanroot.com.ar/" style="text-decoration: none; color:inherit;">Korean Root Argentina</a></li>
+                            <li><a class="dropdown-item" href="#!" style="text-decoration: none; color:inherit;">Korean Root España</a></li>
+                            <li><a class="dropdown-item" href="#!" style="text-decoration: none; color:inherit;">Korean Root México</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item active">
+                        <a 
+                        href="{% url 'blog:lista_publicaciones' %}" 
+                        class="nav-link" 
+                        style="text-decoration: none; color:inherit;"
+                        >
+                        Blog
+                    </a>
+                </li>
+                    <li 
+                    class="nav-item active">
+                    <a 
+                    href="{% url 'acerca_de_nosotros' %}" 
+                    class="nav-link" 
+                    style="text-decoration: none; color:inherit;"
+                    >
+                    Acerca de nosotros
+                </a>
+            </li>
+                    <li class="nav-item dropdown">
+                      <a href="#" 
+                      class="nav-link dropdown-toggle" 
+                      id="navbarDropdown" 
+                      role="button" 
+                      data-bs-toggle="dropdown" 
+                      aria-expanded="false"
+                      >Formaciones
+                      </a>
+                      <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                          <li style="text-align: center;">
+                              <a href="{% url 'capacitaciones' %}" style="text-decoration: none; color:inherit;">Formaciones disponibles</a></li>
+                          <li style="text-align: center;">
+                              <a 
+                              class="dropdown-item" 
+                              href="https://www.youtube.com/channel/UC8QQf5m4bq_b639ss8gnnDg" 
+                              style="text-decoration: none; color:inherit;"
+                              >
+                                YouTube
+                            </a>
+                            </li>
+                          <li style="text-align: center;">
+                              <a 
+                              class="dropdown-item" 
+                              href="https://instagram.com/koreanroot" 
+                              style="text-decoration: none; color:inherit;"
+                              >
+                                Instagram
+                            </a>
+                            </li>
+                      </ul>
+                </ul>
             </div>
+            </div>
+            {% if user.is_authenticated %}
+              <div class="d-grid gap-2 d-sm-flex justify-content-end" style="width: 6rem; margin-right: 2rem;">
+                <button 
+                class="btn btn-outline" 
+                type="button"
+                style="text-decoration: none; color:inherit;"
+                >
+                <a 
+                    href="{% url 'carrito' %}" 
+                    style="text-decoration: none; color:inherit;"
+                    >
+                    Carrito
+                </a>
+                </button>
+                <button class="btn btn-outline" type="button" style="width: 6rem; ">
+                    <a 
+                    href="{% url 'logout' %}" 
+                    style="text-decoration: none; color:inherit;"
+                    >
+                    Cerrar sesion
+                    </a>
+                </button>
+              </div>
+            {% else %}
+              <div class="d-grid gap-2 d-sm-flex justify-content-end" style="width: 5rem;">
+                  <button class="btn btn-outline" type="button">
+                    <a 
+                    href="{% url 'login' %}" 
+                    style="text-decoration: none; color:inherit;"
+                    >
+                    Iniciar sesion
+                    </a>                   
+                  </button>
+                  <button 
+                    class="btn btn-outline" 
+                    type="button"
+                    style="text-decoration: none; color:inherit;"
+                    >
+                    <a 
+                      href="{% url 'registro_usuario' %}" 
+                      style="text-decoration: none; color:inherit;"
+                      >
+                      Registrarse
+                    </a>
+                  </button>
+              </div>
+            {% endif %}
         </nav>
-
-<!-- Header-->
-<header class="bg-danger py-1">
-    <div class="container px-3 px-lg-3 my-3">
-        <div class="text-center text-white">
-            <h1 class="display-4 fw-bolder">Shop in style</h1>
-            <p class="lead fw-normal text-white-50 mb-0">With this shop hompeage template</p>
-        </div>
-    </div>
-</header>        
-        
-        {% if messages %}     
-            
-            {% for mensaje in messages %}
-                <div class="alert alert-{{ mensaje.tags }}">{{mensaje}}</div>
-            {% endfor %}                
-
-        {% endif %}
-            
-            
-        {% block contenidoQueCambia %}
-
-        {% endblock %}
-
-        <!-- Bootstrap core JS-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- Core theme JS-->
-        <script src="js/scripts.js"></script>
-    </body>
-</html>
-
-
-
-
-
-
-        <!-- Navigation-->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-bottom">
-            <div class="container px-4 px-lg-5">
-                <a class="navbar-brand" href="#!">Korean Root</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item"><a class="nav-link" href="tel:3424234054">Contactanos</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#!">Blog</a></li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Nuestras redes</a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="https://instagram.com/koreanroot">Instagram</a></li>
-                                <li><hr class="dropdown-divider" /></li>
-                                <li><a class="dropdown-item" href="https://www.facebook.com/koreanroot">Facebook</a></li>
-                            </ul>
-                        </li>
-                </div>
-            </div>
-
  
+    {% if messages %}     
+        
+        {% for mensaje in messages %}
+            <div class="alert alert-{{ mensaje.tags }}">{{mensaje}}</div>
+        {% endfor %}                
 
+    {% endif %}
+        
+        
+    {% block contenidoQueCambia %}
+    {% endblock %}
+
+          
+    
+    
+    <footer 
+    class="footer" 
+    >
+      <div class="container">
+        <nav class="row">
+          <a href="{% url 'blog:Inicio' %}"
+          class="col-3 text-reser text-uppercase d-flex align-items-center"
+          style="text-decoration: none; color:inherit;"
+          >
+            Korean Root
+          </a>
+          <!--Menúes-->
+          <ul class="col-3 list-unstyled">
+            <li class="font-weight-bold text-uppercase">Navegación</li>
+            <li><a href="{% url 'blog:lista_publicaciones' %}" class="text-reset" style="text-decoration: none; color:inherit;">Blog</a></li>
+            <li><a href="{% url 'acerca_de_nosotros' %}" class="text-reset" style="text-decoration: none; color:inherit;">Acerca de nosotros</a></li>
+            <li><a href="{% url 'capacitaciones' %}" class="text-reset" style="text-decoration: none; color:inherit;">Formaciones</a></li>
+          </ul>
+          <!--Redes-->       
+          <ul class="col-3 list-unstyled">
+            <li class="font-weight-bold text-uppercase" style="text-decoration: none; color:inherit;">Redes</li>
+            <li><a href="https://www.facebook.com/koreanroot" class="text-reset" style="text-decoration: none; color:inherit;">Facebook</a></li>
+            <li><a href="https://instagram.com/koreanroot" class="text-reset" style="text-decoration: none; color:inherit;">Instagram</a></li>
+            <li><a href="https://www.youtube.com/channel/UC8QQf5m4bq_b639ss8gnnDg" class="text-reset" style="text-decoration: none; color:inherit;">YouTube</a></li>
+          </ul>
+          <ul class="col-3 list-unstyled">
+            <li class="font-weight-bold text-uppercase" style="text-decoration: none; color:inherit;">Contacto</li>
+            <li><a href="tel:3424234054" class="text-reset" style="text-decoration: none; color:inherit;">Teléfono</a></li>
+            <li><a href="thekoreanroot@gmail.com" class="text-reset" style="text-decoration: none; color:inherit;">Correo electrónico</a></li>
+          </ul>
         </nav>
-        <!-- Page Content-->
-        <section>
-            <div class="container px-4 px-lg-5">
-                <div class="row gx-4 gx-lg-5">
-                    <div class="col-lg-6">
-                        
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- Bootstrap core JS-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- Core theme JS-->
-        <script src="js/scripts.js"></script>
-    </body>
+      </div>
+
+      
+
+
+    </footer>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+  </body>
 </html>

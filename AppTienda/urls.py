@@ -11,5 +11,7 @@ urlpatterns = [
     path('misCapacitaciones/', views.misCursos, name="mis_capacitaciones"),
     path('registrarse/', views.crearUsuario, name="registro_usuario"),
     path('login/', views.loginRequest, name="login"),
+    path('perfil/', views.editarUsuario, name="editar_usuario"),
     path('logout/', LogoutView.as_view(template_name = 'AppTienda/logout.html'), name = 'logout'),
+    path('acercaDeNosotros/', views.acerca, name='acerca_de_nosotros'),
 ]

@@ -4,7 +4,12 @@
 {% block contenidoQueCambia %}
      
     <ul>   
-    
+        {% if user.is_staff %}
+
+            <button><a href="{% url 'blog:agregar_prod_estrella' %}">Crear producto estrella</a></button>
+            <hr>
+            
+        {% endif %}
         
         {% for producto in productos %}
 
@@ -13,19 +18,15 @@
             
             {% if user.is_staff %}            
                     
-                <button><a href="{% url 'eliminar_prod_estrella' id=producto.id %}">Eliminar</a></button>
-                <button><a href="{% url 'editar_prod_estrella' id=producto.id %}">Editar</a></button>
+                <button><a href="{% url 'blog:eliminar_prod_estrella' id=producto.id %}">Eliminar</a></button>
+                <button><a href="{% url 'blog:editar_prod_estrella' id=producto.id %}">Editar</a></button>
                 
             {% endif %}
             <hr>    
 
         {% endfor %}          
 
-        {% if user.is_staff %}
-
-            <button><a href="{% url 'agregar_prod_estrella' %}">Crear producto estrella</a></button>
-            
-        {% endif %}
+        
     </ul>
 
 {% endblock %}
