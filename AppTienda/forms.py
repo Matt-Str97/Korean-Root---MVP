@@ -3,6 +3,7 @@ from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from ckeditor.widgets import CKEditorWidget
+from .models import Capacitacion
 
 class UserRegisterForm(UserCreationForm):
     email = forms.EmailField()
@@ -24,7 +25,7 @@ class UserEditForm(UserCreationForm):
         model = User
         fields = ['email', 'first_name', 'last_name', 'password1', 'password2']
 
-class FormacionCreationForm(forms.Form):
+class FormacionCreationForm(forms.ModelForm):
     nombre = forms.CharField()
     precio = forms.IntegerField()
     descripcion = forms.CharField(widget=CKEditorWidget())
@@ -32,3 +33,7 @@ class FormacionCreationForm(forms.Form):
     imagen_miniatura = forms.ImageField()
     imagen_portada = forms.ImageField()
     link_capacitacion = forms.CharField()
+
+    class Meta:
+        model = Capacitacion
+        fields = '__all__'

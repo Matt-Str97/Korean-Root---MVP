@@ -105,24 +105,16 @@ def editarCapacitacion(request,id):
       
       if request.method == 'POST':
 
-            form = FormacionCreationForm(request.POST, request.FILES)
+            form = FormacionCreationForm(request.POST, request.FILES, instance=capacitacion)
 
             if form.is_valid():
-                  info = form.cleaned_data
-                  capacitacion.nombre = info['nombre']
-                  capacitacion.precio = info['precio']
-                  capacitacion.descripcion = info['descripcion']
-                  capacitacion.fecha_inicio = info['fecha_inicio']
-                  capacitacion.imagen_miniatura = info['imagen_miniatura']
-                  capacitacion.imagen_portada = info['imagen_portada']
-                  capacitacion.link_capacitacion = info['link_capacitacion']
+
                   capacitacion.save()
 
                   messages.success(request, 'capacitacion editada con exito!')
                   return redirect('capacitaciones')
       else:
-            form = FormacionCreationForm(initial= {'nombre': capacitacion.nombre, 'precio': capacitacion.precio, 'descripcion': capacitacion.descripcion,'fecha_inicio': capacitacion.fecha_inicio,
-            'imagen_miniatura': capacitacion.imagen_miniatura,'imagen_portada': capacitacion.imagen_portada,'link_capacitacion': capacitacion.link_capacitacion})
+            form = FormacionCreationForm(instance=capacitacion)
 
       return render(request, 'AppTienda/editarFormacion.html', {'form': form})
 

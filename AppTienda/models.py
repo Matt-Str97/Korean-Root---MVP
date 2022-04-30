@@ -8,7 +8,7 @@ class Capacitacion(models.Model):
     nombre = models.CharField(max_length=50)
     precio = models.IntegerField()
     descripcion = models.TextField()
-    fecha_inicio = models.DateField(auto_now=False, auto_now_add=False, null = True, blank = True)
+    fecha_inicio = models.DateTimeField()
     imagen_miniatura = models.ImageField(upload_to='miniaturas_capacitaciones', default = 'miniaturacapacitaciondefault.jpg')
     imagen_portada = models.ImageField(upload_to='portadas_capacitaciones', default = 'portadacapacitaciondefault.jpg')
     link_capacitacion = models.CharField(max_length=255)

@@ -6,7 +6,7 @@ class Post(models.Model):
     titulo = models.CharField(max_length=70)
     subtitulo = models.CharField(max_length=140)
     cuerpo = RichTextField(blank = True, null = True)
-    fecha_creacion = models.DateTimeField(auto_now_add=True)
+    fecha_creacion = models.DateTimeField()
     autor = models.CharField(max_length=50)
     img_portada = models.ImageField(upload_to='portadas_blog', null=True, blank=True)
     img_miniatura = models.ImageField(upload_to='miniaturas_blog', null=True, blank=True)

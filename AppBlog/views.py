@@ -97,28 +97,17 @@ def editarPublicacion(request,id):
 
     if request.method == 'POST':
 
-        form = CrearPublicacionForm(request.POST)
+        form = CrearPublicacionForm(request.POST, request.FILES, instance=post)
 
         if form.is_valid():
-                        
-            info = form.cleaned_data
-            post.titulo = info['titulo']
-            post.subtitulo = info['subtitulo']
-            post.cuerpo = info['cuerpo']
-            post.fecha_creacion = info['fecha_creacion']
-            post.autor = info['autor']
-            post.img_portada = info['img_portada']
-            post.img_miniatura = info['img_miniatura']
-            post.fuente = info['fuente']
-            post.link_noticia = info['link_noticia']
+ 
             post.save()
 
             messages.success(request, 'La publicacion fue editada con exito!')
             return redirect('/blog/listablog/')
     
     else:
-        form = CrearPublicacionForm(initial= {'titulo': post.titulo, 'subtitulo': post.subtitulo, 'cuerpo': post.cuerpo, 'fecha_creacion': post.fecha_creacion, 'autor': post.autor, 
-            'img_portada': post.img_portada, 'img_miniatura': post.img_miniatura, 'fuente': post.fuente, 'link_noticia': post.link_noticia})
+        form = CrearPublicacionForm(instance=post)
 
     return render(request, 'AppBlog/editar_publicacion.html', {'form': form})
 
@@ -162,19 +151,15 @@ def editarCarrusel(request,id):
 
     if request.method == 'POST':
 
-        form = AgregarCarrusel(request.POST, request.FILES)
+        form = AgregarCarrusel(request.POST, request.FILES, instance=carrusel)
         if form.is_valid():
 
-            info = form.cleaned_data
-            carrusel.titulo = info['titulo']
-            carrusel.texto = info['texto']
-            carrusel.imagen = info['imagen']
             carrusel.save()
 
             messages.success (request, 'Se edito el carrusel con exito.')
             return redirect('/blog/imagenesCarrusel/')
     else:
-        form = AgregarCarrusel(initial= {'imagen': carrusel.imagen, 'titulo': carrusel.titulo, 'texto': carrusel.texto})
+        form = AgregarCarrusel(instance=carrusel)
     
     return render(request, 'AppBlog/editar_carrusel.html', {'form': form})
 
@@ -234,18 +219,15 @@ def editarProdEstrella(request, id):
 
     if request.method == 'POST':
 
-        form = AgregarProductoEstrella(request.POST, request.FILES)
+        form = AgregarProductoEstrella(request.POST, request.FILES, instance=producto)
 
         if form.is_valid():
 
-            info = form.cleaned_data
-            producto.titulo = info['titulo']
-            producto.imagen = info['imagen']
             producto.save()
 
             messages.success(request, 'Producto editado con exito.')
             return redirect('/blog/verProdEstrella/')
     else:
-        form = AgregarProductoEstrella(initial= {'titulo': producto.titulo, 'imagen': producto.imagen})
+        form = AgregarProductoEstrella(instance=producto)
     
     return render(request, 'AppBlog/editar_prod_estrella.html', {'form': form})
