@@ -3,9 +3,36 @@
 
 {% block contenidoQueCambia %}
 
-    <h1>{{curso.nombre}}</h1>
-    <img src="{{curso.imagen_portada.url}}" height="500" />
-    <p>{{curso.descripcion|safe}}</p>
-    <p>Fecha de inicio: {{curso.fecha_inicio|date:'d/n/Y'}}</p>
-    <button><a href="{% url 'agregar_producto' id=curso.id %}">Agregar al carrito</a></button>
+
+<div style="border-bottom: 2rem; border-top: 2%; margin-left: 2%; margin-right: 2%; margin-top: 2rem; margin-bottom: 2rem;">
+    <h1 style="margin-top: 1rem; margin-bottom: 1rem;">{{curso.nombre}}</h1>
+    <img src="{{curso.imagen_portada.url}}" 
+    style=
+    "display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 3rem; 
+    max-width: 70%;
+    max-height: 50%;
+    margin-bottom: 2rem;" />
+    <hr>
+    <article style="margin-left: 2rem; margin-right: 2rem; font-size: 25px;">{{ curso.descripcion|safe }}</article>
+    <div style="margin-right: 30%;">
+        <hr>
+    </div>
+    <h3 style="margin-left: 2rem; margin-right: 2rem; font-size: 25px; margin-top: 2rem;">Fecha de inicio: {{curso.fecha_inicio}}</h3>
+    <h3 style="margin-left: 2rem; margin-right: 2rem; font-size: 25px; margin-top: 2rem;">Costo de esta capacitacion: ${{curso.precio}}</h3>
+    <button 
+    type="button" 
+    class="btn btn-light" 
+    style="margin-left: 2rem; margin-right: 2rem; margin-top: 2rem; font-size: 30px; background-color: rgb(233, 232, 232);">
+        <a 
+        href="{% url 'agregar_producto' id=curso.id %}" 
+        style="text-decoration: none; color:inherit;"
+        >
+            Agregar al carrito
+        </a>
+    </button>
+</div>
+
 {% endblock %}

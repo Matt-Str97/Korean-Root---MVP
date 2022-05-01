@@ -2,20 +2,69 @@
 {% load static %}
 
 {% block contenidoQueCambia %}
+
     {% if productos %}
-        <h1>Carrito</h1> 
+        <h1 style="margin-top: 2rem; margin-left: 2rem;">Carrito</h1> 
         <hr>
-        {% for producto in productos %}
-            <h4>{{producto.nombre}}</h4>
-            <p>${{producto.precio}}</p>
-            <img src="{{producto.imagen_miniatura.url}}" height="100" width="100"/>
-            <button class="btn btn-outline-secondary"><a href="{% url 'eliminar_producto' id=producto.id %}">eliminar</a></button>
-            <hr>
-        {% endfor %}    
+
+        <section class="py-5">
+            <div class="container px-4 px-lg-5 mt-5">
+                <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+                    {% for producto in productos %}                
+                        <div class="col mb-5">
+                            <div class="card h-100">
+                                <img class="card-img-top" src="{{producto.imagen_miniatura.url}}" alt="..." height="250" />
+                                <div class="card-body p-4">
+                                    <div class="text-center">
+                                        <h5 class="fw-bolder">{{producto.nombre}}</h5>
+                                        ${{producto.precio}}
+                                    </div>
+                                </div>
+                                <div class="card-footer p-4 pt-0 border-top-0 bg-transparent" style="align-items: center;">
+                                    <div class="text-center">
+                                        <button class="btn btn-outline-secondary">
+                                            <a 
+                                            href="{% url 'eliminar_producto' id=producto.id %}" 
+                                            style="text-decoration: none; color: black;">
+                                            Eliminar
+                                            </a>
+                                        </button>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+
     
-        <h4>Total: ${{total}}</h4>
-        <button class="btn btn-outline-secondary"><a href="{% url 'comprar' %}">Comprar</a></button>
+        <h4 style="margin-left: 2rem;">Total: ${{total}}</h4>
+            <button class="btn btn-outline-secondary" style="margin-bottom: 2rem; margin-top: 1rem; margin-left: 15%; margin-right: 15%;">
+                <a 
+                href="{% url 'comprar' %}" 
+                style="text-decoration: none; color:inherit; color: black;">
+                Comprar
+                </a>
+            </button>
+
+        {% else %}
+        <h2 style="margin-top: 2rem; margin-left: 2rem;">Tu carrito está vacío</h2>
+        <img 
+        src="https://image.spreadshirtmedia.net/image-server/v1/mp/products/T1459A839MPA4459PT28D301583268FS3682/views/1,width=378,height=378,appearanceId=839,backgroundColor=F2F2F2/carrito-de-la-compra-vacio-garabato-de-dibujo-a-lapiz-pegatina.jpg" 
+        style=
+        "display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 40%;"
+        />
+
+
+
     {% endif %}       
     
-        
+    
+
+    
 {% endblock %}

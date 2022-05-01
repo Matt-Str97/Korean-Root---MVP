@@ -59,8 +59,6 @@ def loginRequest(request):
 def capacitaciones(request):
     
       cursos_lista = Capacitacion.objects.all()
-      if cursos_lista.count() <= 0:
-            messages.error(request, 'Aun no hay formaciones disponibles.')
 
       return render(request, 'AppTienda/formacion.html', {'cursos_lista': cursos_lista})
 
@@ -154,7 +152,6 @@ def verCarrito(request):
             return render(request, 'AppTienda/carrito.html', {'productos': productos, 'total': usuario.carrito.total})
       else:
 
-            messages.error(request, 'Tu carrito esta vacio')
             return render(request, 'AppTienda/carrito.html')
 
 

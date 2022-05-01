@@ -5,6 +5,7 @@ from django.contrib.auth.forms import UserCreationForm
 from ckeditor.widgets import CKEditorWidget
 from .models import Capacitacion
 
+
 class UserRegisterForm(UserCreationForm):
     email = forms.EmailField()
     first_name = forms.CharField(label='Nombre')
