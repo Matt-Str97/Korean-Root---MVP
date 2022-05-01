@@ -125,16 +125,8 @@
             </div>
             </div>
             {% if user.is_authenticated %}
-              <div class="d-grid gap-2 d-sm-flex justify-content-end" style="width: 6rem; margin-right: 2rem;">
+              <div class="d-grid gap-2 d-sm-flex justify-content-end" style="width: 6rem; margin-right: 6rem;">
               <div class="d-grid gap-2 d-sm-flex justify-content-end" style="width: 5rem;">
-                <button class="btn btn-outline" type="button">
-                  <a 
-                  href="{% url 'mis_capacitaciones' %}" 
-                  style="text-decoration: none; color:inherit;"
-                  >
-                  Mis capacitaciones
-                  </a>
-                </button> 
                 <button 
                 class="btn btn-outline" 
                 type="button"
@@ -147,14 +139,44 @@
                     Carrito
                 </a>
                 </button>
-                <button class="btn btn-outline" type="button" style="width: 6rem; ">
-                    <a 
-                    href="{% url 'logout' %}" 
-                    style="text-decoration: none; color:inherit;"
-                    >
-                    Cerrar sesion
-                    </a>
-                </button>
+
+                <li class="nav-item dropdown" style="list-style-type: none">
+                  <a href="#" 
+                  class="nav-link dropdown-toggle" 
+                  id="navbarDropdown" 
+                  role="button" 
+                  data-bs-toggle="dropdown" 
+                  aria-expanded="false"
+                  style="color: black;">
+                  {{user.username}}
+                  </a>
+                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li style="text-align: center;">
+                      <a 
+                      href="{% url 'mis_capacitaciones' %}" 
+                      style="text-decoration: none; color:inherit;"
+                      >
+                      Mis capacitaciones
+                      </a>
+                    </li>
+                    <li style="text-align: center;">
+                      <a 
+                      href="{% url 'editar_usuario' %}" 
+                      style="text-decoration: none; color:inherit;"
+                      >
+                      Editar perfil
+                      </a>
+                    </li>  
+                    <li style="text-align: center;">
+                      <a 
+                      href="{% url 'logout' %}" 
+                      style="text-decoration: none; color:inherit;"
+                      >
+                      Cerrar sesion
+                      </a>
+                    </li>  
+                  </ul>
+                </li>
               </div>
             {% else %}
               <div class="d-grid gap-2 d-sm-flex justify-content-end" style="width: 5rem;">

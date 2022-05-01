@@ -230,5 +230,5 @@ def editarUsuario(request):
 # About us
 def acerca(request):
 
-      return render(request, "AppTienda/acerca.html")
+      return render(request, "AppTienda/acerca_nosotros.html")
 
