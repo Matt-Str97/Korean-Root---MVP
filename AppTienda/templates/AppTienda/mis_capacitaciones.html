@@ -3,15 +3,43 @@
 
 {% block contenidoQueCambia %}
 
-    {% for producto in productos %}
-            
-        <h3>{{producto.nombre}}</h3>
-        <p>Comienza el dia {{producto.fecha_inicio|date:'d/n/Y'}}</p>
-        <img src="{{producto.imagen_miniatura.url}}" height="100" width="100">
-        <button><a href="{% url 'capacitacion_detalle' id=producto.id %}">Ver detalle</a></button>
-        <button><a href='{{producto.link_capacitacion}}'>Link a la capacitacion</a></button>        
-        <hr>
-
-    {% endfor %} 
+    <section class="py-5">
+        <div class="container px-4 px-lg-5 mt-5">
+            <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-3 justify-content-left">
+                {% for producto in productos %}                
+                    <div class="col mb-5">
+                            <img class="card-img-top" src="{{producto.imagen_miniatura.url}}" alt="..." height="250" />
+                            <div class="card-body p-4">
+                                <div class="text-center">
+                                    <h5 class="fw-bolder">{{producto.nombre}}</h5>
+                                    <p>Comienza el dia {{producto.fecha_inicio|date:'d/n/Y'}}</p>
+                                </div>
+                            </div>
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div class="text-center">
+                                    <a 
+                                    class="btn btn-outline-dark mt-auto" 
+                                    href="{% url 'capacitacion_detalle' id=producto.id %}"
+                                    style="margin-bottom: 1rem;"
+                                    >
+                                    Detalle del curso
+                                </a>
+                            </div>
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div class="text-center">
+                                    <a 
+                                    class="btn btn-outline-dark mt-auto" 
+                                    href="{{producto.link_capacitacion}}"
+                                    >
+                                    Link a la capacitacion
+                                </a>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
 
 {% endblock %}

@@ -10,48 +10,55 @@
     <div style="border-bottom: 2%; border-top: 2%;">
         <ul>
             {% if publicaciones %}
-
-            <h1 style="margin-top: 1rem; margin-bottom: 1rem;">Todo lo que necesitas saber</h1>
-                
+                <h1 style="margin-top: 1rem; margin-bottom: 1rem;">Todo lo que necesitas saber</h1>
                 {% for publicacion in publicaciones %}
-                    
-                    <a href="{% url 'blog:publicacion_detalle' id=publicacion.id %}" style="text-decoration: none; color:inherit;"><h2>{{publicacion.titulo}}</h2></a>        
-                    <p style="font-size: 25px;">{{publicacion.subtitulo}}</p>
-                    {% if publicacion.img_miniatura %}
-                        <img src="{{publicacion.img_miniatura.url}}" width="50%" 
-                        style=
-                        "display: block;
-                        margin-left: auto;
-                        margin-right: auto;
-                        margin-bottom: 3rem; 
-                        max-width: 50%;
-                        max-height: 40%;
-                        margin-bottom: 2rem;">
-                    {% else %}
-                        <img src="\media\miniaturadefault.jpg" height="100" 
-                        style=
-                        "display: block;
-                        margin-left: auto;
-                        margin-right: auto;
-                        margin-bottom: 3rem; 
-                        max-width: 50%;
-                        max-height: 40%;
-                        margin-bottom: 2rem;">
-                    {% endif %}
-        
-                    
-                    {% if user.is_staff %}            
-                            
-                        <button><a href="{% url 'blog:eliminar_publicacion' id=publicacion.id %}">Eliminar</a></button>
-                        <button><a href="{% url 'blog:editar_publicacion' id=publicacion.id %}">Editar</a></button>
-                        
-                    {% endif %}
-                    <hr>    
-        
-                {% endfor %}   
-
+                    <div class="row" style="margin-bottom: 1rem; margin-left: 3rem; margin-right: 3rem;">
+                        <div class="col-6">
+                            <div 
+                            style=
+                            "margin-top: 3rem;
+                            display: block;
+                            align-items: center;
+                            width: auto;"
+                            >
+                            {% if publicacion.img_miniatura %}
+                                <img 
+                                src="{{ publicacion.img_miniatura.url }}" 
+                                alt="" 
+                                style=
+                                "display: block;
+                                margin-left: auto;
+                                margin-right: auto;
+                                max-width: 80%;
+                                max-height: 25rem;"
+                                >
+                                {% else %}
+                                <img src="\media\miniaturadefault.jpg"
+                                style=
+                                "display: block;
+                                margin-left: auto;
+                                margin-right: auto;
+                                margin-bottom: 3rem; 
+                                max-width: 50%;
+                                max-height: 35rem;
+                                margin-bottom: 2rem;">
+                            {% endif %}
+                            </div>
+                        </div>
+                        <div class="col-6" style="margin-top: 1.5rem;">
+                            <a href="{% url 'blog:publicacion_detalle' id=publicacion.id %}" style="text-decoration: none; color:inherit;"><h2>{{publicacion.titulo}}</h2></a>
+                            <h4 style="font-size: 30px; margin-bottom: 1rem; "><a href="" style="text-decoration: none; color:inherit;"></a></h4>
+                            <hr>
+                        <p style="font-size: 25px; color: rgb(105, 105, 105);">{{publicacion.subtitulo}}</p>
+                        </div>
+                        <hr style="margin-top: 1rem;">
+                        {% if user.is_staff %}            
+                            <button><a href="{% url 'blog:eliminar_publicacion' id=publicacion.id %}">Eliminar</a></button>
+                            <button><a href="{% url 'blog:editar_publicacion' id=publicacion.id %}">Editar</a></button>
+                        {% endif %}
+                    </div>
+                {% endfor %}
             {% endif %}
-            <hr>             
        
 
         </ul>      

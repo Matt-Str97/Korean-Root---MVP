@@ -21,7 +21,7 @@
 
     <style>
         .body {
-            background-color:rgb(255, 255, 255); 
+            background-color:rgb(248, 248, 248); 
             display: flex; 
             flex-direction: column; 
             min-height: 100vh;
@@ -29,7 +29,7 @@
 
 
         .footer {
-            background-color: darksalmon;
+            background-color: rgb(242, 208, 209);
             position: relative;
             margin-top: auto;
             clear:both;
@@ -37,7 +37,7 @@
     </style>
     
     
-        <nav class="navbar navbar-expand-sm navbar-light" style="background-color:darksalmon">
+        <nav class="navbar navbar-expand-sm navbar-light" style="background-color:rgb(242, 208, 209)">
             <div class="container">
             <a href="{% url 'blog:Inicio' %}" class="navbar-brand mb-0 h1" style="text-emphasis-color: aliceblue; margin-right: 1rem;">Korean Root</a>
             <button 
@@ -61,12 +61,13 @@
                         role="button" 
                         data-bs-toggle="dropdown" 
                         aria-expanded="false"
+                        style="color: black;"
                         >Tienda
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a href="https://www.koreanroot.com.ar/" style="text-decoration: none; color:inherit;">Korean Root Argentina</a></li>
-                            <li><a class="dropdown-item" href="#!" style="text-decoration: none; color:inherit;">Korean Root España</a></li>
-                            <li><a class="dropdown-item" href="#!" style="text-decoration: none; color:inherit;">Korean Root México</a></li>
+                            <li style="text-align: center;"><a href="https://www.koreanroot.com.ar/" style="text-decoration: none; color:inherit;">Korean Root Argentina</a></li>
+                            <li style="text-align: center;"><a href="https://www.koreanroot.com.ar/" style="text-decoration: none; color:inherit;">Korean Root España</a></li>
+                            <li style="text-align: center;"><a href="https://www.koreanroot.com.ar/" style="text-decoration: none; color:inherit;">Korean Root México</a></li>
                         </ul>
                     </li>
                     <li class="nav-item active">
@@ -95,6 +96,7 @@
                       role="button" 
                       data-bs-toggle="dropdown" 
                       aria-expanded="false"
+                      style="color: black;"
                       >Formaciones
                       </a>
                       <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -125,14 +127,6 @@
             {% if user.is_authenticated %}
               <div class="d-grid gap-2 d-sm-flex justify-content-end" style="width: 6rem; margin-right: 2rem;">
               <div class="d-grid gap-2 d-sm-flex justify-content-end" style="width: 5rem;">
-                <button class="btn btn-outline" type="button">
-                    <a 
-                    href="{% url 'logout' %}" 
-                    style="text-decoration: none; color:inherit;"
-                    >
-                    Cerrar sesion
-                    </a>
-                </button>
                 <button class="btn btn-outline" type="button">
                   <a 
                   href="{% url 'mis_capacitaciones' %}" 
@@ -203,43 +197,43 @@
           
     
     
-    <footer 
-    class="footer" 
-    >
-      <div class="container">
-        <nav class="row">
-          <a href="{% url 'blog:Inicio' %}"
-          class="col-3 text-reser text-uppercase d-flex align-items-center"
-          style="text-decoration: none; color:inherit;"
-          >
-            Korean Root
-          </a>
-          <!--Menúes-->
-          <ul class="col-3 list-unstyled">
-            <li class="font-weight-bold text-uppercase">Navegación</li>
-            <li><a href="{% url 'blog:lista_publicaciones' %}" class="text-reset" style="text-decoration: none; color:inherit;">Blog</a></li>
-            <li><a href="{% url 'acerca_de_nosotros' %}" class="text-reset" style="text-decoration: none; color:inherit;">Acerca de nosotros</a></li>
-            <li><a href="{% url 'capacitaciones' %}" class="text-reset" style="text-decoration: none; color:inherit;">Formaciones</a></li>
-          </ul>
-          <!--Redes-->       
-          <ul class="col-3 list-unstyled">
-            <li class="font-weight-bold text-uppercase" style="text-decoration: none; color:inherit;">Redes</li>
-            <li><a href="https://www.facebook.com/koreanroot" class="text-reset" style="text-decoration: none; color:inherit;">Facebook</a></li>
-            <li><a href="https://instagram.com/koreanroot" class="text-reset" style="text-decoration: none; color:inherit;">Instagram</a></li>
-            <li><a href="https://www.youtube.com/channel/UC8QQf5m4bq_b639ss8gnnDg" class="text-reset" style="text-decoration: none; color:inherit;">YouTube</a></li>
-          </ul>
-          <ul class="col-3 list-unstyled">
-            <li class="font-weight-bold text-uppercase" style="text-decoration: none; color:inherit;">Contacto</li>
-            <li><a href="tel:3424234054" class="text-reset" style="text-decoration: none; color:inherit;">Teléfono</a></li>
-            <li><a href="thekoreanroot@gmail.com" class="text-reset" style="text-decoration: none; color:inherit;">Correo electrónico</a></li>
-          </ul>
-        </nav>
-      </div>
+  <footer 
+  class="footer" 
+  >
+    <div class="container">
+      <nav class="row">
+        <a href="{% url 'blog:Inicio' %}"
+        class="col-3 text-reser text-uppercase d-flex align-items-center"
+        style="text-decoration: none; color:inherit;"
+        >
+          Korean Root
+        </a>
+        <!--Menúes-->
+        <ul class="col-3 list-unstyled">
+          <li class="font-weight-bold text-uppercase">Navegación</li>
+          <li><a href="{% url 'blog:lista_publicaciones' %}" class="text-reset" style="text-decoration: none; color:inherit;">Blog</a></li>
+          <li><a href="{% url 'acerca_de_nosotros' %}" class="text-reset" style="text-decoration: none; color:inherit;">Acerca de nosotros</a></li>
+          <li><a href="{% url 'capacitaciones' %}" class="text-reset" style="text-decoration: none; color:inherit;">Formaciones</a></li>
+        </ul>
+        <!--Redes-->       
+        <ul class="col-3 list-unstyled">
+          <li class="font-weight-bold text-uppercase" style="text-decoration: none; color:inherit;">Redes</li>
+          <li><a href="https://www.facebook.com/koreanroot" class="text-reset" style="text-decoration: none; color:inherit;">Facebook</a></li>
+          <li><a href="https://instagram.com/koreanroot" class="text-reset" style="text-decoration: none; color:inherit;">Instagram</a></li>
+          <li><a href="https://www.youtube.com/channel/UC8QQf5m4bq_b639ss8gnnDg" class="text-reset" style="text-decoration: none; color:inherit;">YouTube</a></li>
+        </ul>
+        <ul class="col-3 list-unstyled">
+          <li class="font-weight-bold text-uppercase" style="text-decoration: none; color:inherit;">Contacto</li>
+          <li><a href="tel:3424234054" class="text-reset" style="text-decoration: none; color:inherit;">Teléfono</a></li>
+          <li><a href="thekoreanroot@gmail.com" class="text-reset" style="text-decoration: none; color:inherit;">Correo electrónico</a></li>
+        </ul>
+      </nav>
+    </div>
 
-      
+    
 
 
-    </footer>
+  </footer>
     
     
     

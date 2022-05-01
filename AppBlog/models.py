@@ -27,6 +27,7 @@ class ImagenCarrusel(models.Model):
 class ProductoEstrella(models.Model):
     titulo = models.CharField(max_length=50)
     imagen = models.ImageField(upload_to='productos_estrella', default=None)
+    descripcion = models.TextField()
     
     def __str__(self):
         return f'{self.titulo}'

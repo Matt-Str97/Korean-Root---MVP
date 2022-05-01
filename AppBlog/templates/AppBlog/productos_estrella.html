@@ -3,30 +3,59 @@
 
 {% block contenidoQueCambia %}
      
-    <ul>   
-        {% if user.is_staff %}
+<ul>   
+    
+    {% if user.is_staff %}
 
-            <button><a href="{% url 'blog:agregar_prod_estrella' %}">Crear producto estrella</a></button>
-            <hr>
-            
-        {% endif %}
-        
-        {% for producto in productos %}
+        <button class="btn btn-outline-secondary" style="margin-top: 2rem">
+            <a 
+            href="{% url 'blog:agregar_prod_estrella' %}" 
+            style="text-decoration: none; color: black;">
+            Crear Imagen
+            </a>
+        </button>
+        <hr>
+    {% endif %}
 
-            <img src="{{producto.imagen.url}}" height="100">               
-            <p>{{producto.titulo}}</p>
-            
-            {% if user.is_staff %}            
-                    
-                <button><a href="{% url 'blog:eliminar_prod_estrella' id=producto.id %}">Eliminar</a></button>
-                <button><a href="{% url 'blog:editar_prod_estrella' id=producto.id %}">Editar</a></button>
-                
-            {% endif %}
-            <hr>    
+    {% if user.is_staff %}            
+            <section class="py-5">
+                <div class="container px-4 px-lg-5 mt-5">
+                    <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+                        {% for producto in productos %}                
+                            <div class="col mb-5">
+                                <div class="card h-100">
+                                    <img class="card-img-top" src="{{producto.imagen.url}}" alt="..." height="250" />
+                                    <div class="card-body p-4">
+                                        <div class="text-center">
+                                            <h5 class="fw-bolder">{{producto.titulo}}</h5>
+                                        </div>
+                                    </div>
+                                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent" style="align-items: center;">
+                                        <button class="btn btn-outline-secondary">
+                                            <a 
+                                            href="{% url 'blog:eliminar_prod_estrella' id=producto.id %}" 
+                                            style="text-decoration: none; color: black;">
+                                            Eliminar
+                                            </a>
+                                        </button>
+                                        <button class="btn btn-outline-secondary">
+                                            <a 
+                                            href="{% url 'blog:editar_prod_estrella' id=producto.id %}" 
+                                            style="text-decoration: none; color: black;">
+                                            Editar
+                                            </a>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </section>
+    {% endif %}
 
-        {% endfor %}          
+    
+</ul>
 
-        
-    </ul>
 
 {% endblock %}

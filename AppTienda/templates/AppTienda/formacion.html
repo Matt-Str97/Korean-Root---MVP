@@ -3,49 +3,47 @@
 
 {% block contenidoQueCambia %}
 
-<!-- Section-->
-<section class="py-5">
-    <div class="container px-4 px-lg-5 mt-5">
-        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+{% if user.is_staff %}
+        <button><a href="{% url 'nueva_capacitacion' %}">Crear capacitacion</a></button>
+{% endif %}
 
-            
-            {% for curso in cursos_lista %}                
-            
-                
-                <div class="col mb-5">
-                    <div class="card h-100">
-                        <!-- Product image-->
-                        <img class="card-img-top" src="{{curso.imagen_miniatura.url}}" alt="..." height="250" />
-                        <!-- Product details-->
-                        <div class="card-body p-4">
-                            <div class="text-center">
-                                <!-- Product name-->
-                                <h5 class="fw-bolder">{{curso.nombre}}</h5>
-                                <!-- Product price-->
-                                ${{curso.precio}}
+
+{% if not cursos_lista %}
+    <h1>Aun no hay formaciones disponibles</h1>
+{% endif %}
+
+
+
+    <section class="py-5">
+        <div class="container px-4 px-lg-5 mt-5">
+            <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+                {% for curso in cursos_lista %}                
+                    <div class="col mb-5">
+                        <div class="card h-100">
+                            <!-- Product image-->
+                            <img class="card-img-top" src="{{curso.imagen_miniatura.url}}" alt="..." height="250" />
+                            <!-- Product details-->
+                            <div class="card-body p-4">
+                                <div class="text-center">
+                                    <!-- Product name-->
+                                    <h5 class="fw-bolder">{{curso.nombre}}</h5>
+                                    <!-- Product price-->
+                                    ${{curso.precio}}
+                                </div>
+                            </div>
+                            <!-- Product actions-->
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="{% url 'capacitacion_detalle' id=curso.id %}">Ver mas</a></div>
+                                {% if user.is_staff %}
+                                    <button><a href="{% url 'eliminar_capacitacion' id=curso.id %}">Eliminar</a></button>
+                                    <button><a href="{% url 'editar_capacitacion' id=curso.id %}">Editar</a></button>
+                                {% endif %}
                             </div>
                         </div>
-                        <!-- Product actions-->
-                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                            <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="{% url 'capacitacion_detalle' id=curso.id %}">Ver mas</a></div>
-                            {% if user.is_staff %}
-
-                                <button><a href="{% url 'eliminar_capacitacion' id=curso.id %}">Eliminar</a></button>
-                                <button><a href="{% url 'editar_capacitacion' id=curso.id %}">Editar</a></button>
-
-                            {% endif %}
-                        </div>
                     </div>
-                </div>
-
-                
-
-            {% endfor %}
-            
-            
-           
+                {% endfor %}
+            </div>
         </div>
-    </div>
-</section>
+    </section>
 
 {% endblock %}

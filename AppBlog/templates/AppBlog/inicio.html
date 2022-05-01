@@ -9,7 +9,7 @@
               margin-top: 2rem;
               margin-bottom: 2rem;
               height: 30rem;
-              background: rgb(255, 255, 255);
+              background: rgb(248, 248, 248);
     }
 
   </style>
@@ -36,7 +36,7 @@
             width: auto;"
             alt="longdesc">
           </div>
-          
+
           <div class="carousel-caption d-none d-md-block">
             <h5>{{ carrusel_1.titulo.url }}</h5>
             <p>{{ carrusel_1.texto.url }}</p>
@@ -176,32 +176,36 @@
           </div>
       </div>
       <div class="col-6" style="margin-top: 1.5rem;">
-        <div class="btn-group" role="group">
-          <button 
-          id="btnGroupDrop1" 
-          type="button" 
-          class="btn btn-primary dropdown-toggle" 
-          data-bs-toggle="dropdown" 
-          aria-expanded="false"
-          style=
-          "text-decoration: none; 
-          color:inherit;
-          background-color: aliceblue;
-          color: black;
-          border-color: aliceblue;"
-          >
-            {{ imagen.titulo }}
-          </button>
-          <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-            <li><a class="dropdown-item" href="#">Argentina</a></li>
-            <li><a class="dropdown-item" href="#">España</a></li>
-            <li><a class="dropdown-item" href="#">Mexico</a></li>
-          </ul>
-        </div>
-        <h4 style="font-size: 30px; margin-bottom: 1rem; "><a href="" style="text-decoration: none; color:inherit;"></a></h4>
+        <h3>{{ imagen.titulo }}</h3>
         <hr>
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Esse beatae, deleniti architecto ab exercitationem culpa libero aliquid ullam placeat nulla illum nihil, accusamus laborum porro veritatis et molestiae ex error!
-        Repudiandae quod totam tenetur error tempora odit nulla! Unde autem eaque dolorum optio blanditiis suscipit sint quam, earum nesciunt nihil reiciendis animi dolorem minus nam eligendi obcaecati consequatur ut! In?
+        {{imagen.descripcion}}
+        <div>
+          <hr style="margin-right: 99.9%;">
+          <div class="btn-group" role="group">
+            <button 
+            id="btnGroupDrop1" 
+            type="button" 
+            class="btn btn-primary dropdown-toggle" 
+            data-bs-toggle="dropdown" 
+            aria-expanded="false"
+            style=
+            "text-decoration: none; 
+            color:inherit;
+            background-color: aliceblue;
+            color: black;
+            border-color: aliceblue;
+            "
+            >
+              Ver mas
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+              <li><a class="dropdown-item" href="https://www.koreanroot.com.ar/" style="text-decoration: none; color:inherit;">Argentina</a></li>
+              <li><a class="dropdown-item" href="https://www.koreanroot.com.ar/" style="text-decoration: none; color:inherit;">España</a></li>
+              <li><a class="dropdown-item" href="https://www.koreanroot.com.ar/" style="text-decoration: none; color:inherit;">Mexico</a></li>
+            </ul>
+          </div>
+        </div>
+        
       </div>
     </div>
     {% endfor %}
@@ -212,7 +216,6 @@
 
 
 
-  {% if publicaciones %}
 {% if publicaciones %}
   <h2 style="
   margin-left: 3%;
@@ -225,7 +228,7 @@
   {% for publicacion in publicaciones %}
                     
     <a href="{% url 'blog:publicacion_detalle' id=publicacion.id %}" style="text-decoration: none; color:inherit;"><h3>{{publicacion.titulo}}</h3></a>        
-    <p style="font-size: 25px;">{{publicacion.subtitulo}}</p>
+    <p style="font-size: 25px; color: rgb(105, 105, 105);">{{publicacion.subtitulo}}</p>
     {% if publicacion.img_miniatura %}
         <img src="{{publicacion.img_miniatura.url}}" 
         style=

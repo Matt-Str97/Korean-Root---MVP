@@ -3,8 +3,9 @@
 
 {% block contenidoQueCambia %}
 
-    <h1>Cerraste sesion.</h1>
+    <h1 style="margin-top: 2rem; margin-left: 2rem;">Cerraste sesion</h1>
 
-    <a href="{% url 'login' %}">volver a iniciar sesion.</a>
+    <a href="{% url 'login' %}" style="margin-top: 2rem; margin-left: 3rem; text-decoration: none; color:inherit;"><h4>Volver a iniciar sesion.</h4></a>
+    <a href="{% url 'blog:Inicio' %}" style="margin-top: 1rem; margin-left: 3rem; text-decoration: none; color:inherit;"><h4>Volver al inicio.</h4></a>
 
 {% endblock %}
