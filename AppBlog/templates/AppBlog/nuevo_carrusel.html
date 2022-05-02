@@ -5,7 +5,7 @@
   
     {% load crispy_forms_tags %}
 
-    <form method="POST" class="col-lg-X" style="margin-right: 2rem; margin-left: 2rem; margin-bottom: 2rem;">
+    <form method="POST" enctype="multipart/form-data" class="col-lg-X" style="margin-right: 2rem; margin-left: 2rem; margin-bottom: 2rem;">
         {% csrf_token %}
 
         {{ form|crispy }}

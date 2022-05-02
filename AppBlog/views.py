@@ -62,7 +62,7 @@ def crearPublicacion(request):
 
     if request.method == 'POST':
 
-        publicacion = CrearPublicacionForm(request.POST)
+        publicacion = CrearPublicacionForm(request.POST, request.FILES)
 
         if publicacion.is_valid():
                         
@@ -183,7 +183,7 @@ def agregarProductoEstrella(request):
         if form.is_valid():
 
             info = form.cleaned_data
-            mi_producto = ProductoEstrella(titulo = info['titulo'], imagen = info['imagen'])
+            mi_producto = ProductoEstrella(titulo = info['titulo'], imagen = info['imagen'], descripcion = info['descripcion'])
             mi_producto.save()
 
             messages.success(request, 'Producto estrella creado con exito!')
