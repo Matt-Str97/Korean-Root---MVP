@@ -6,7 +6,7 @@
   <li> Matias Strozza </li>
 </ul>
 <hr>
-
+<h4><a href="https://www.youtube.com/watch?v=WfdKOomCb6E">Video explicacion</a></h4>
 <p>
   El proyecto fue desarrollado teniendo en cuenta las ideas que nos dieron desde Korean Root, y esta compuesto por dos aplicaciones. La primera es el blog,
   donde todas las funcionalidades son accesibles sin necesidad de haber iniciado sesion en la pagina. desede esta aplicacion podemos ver las publicaciones en el blog y 
